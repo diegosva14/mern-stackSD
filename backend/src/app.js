@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
+
 // settings
 app.set('port', process.env.PORT || 4000); 
 // middlewares
