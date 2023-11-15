@@ -15,7 +15,7 @@ code {
 }
 
 body{
-  background: rgb(63,9,63);
+  background: rgb(83, 124, 185);
 }
 .notes-page{
   width: 100%;
@@ -23,6 +23,7 @@ body{
   color: whitesmoke;
 }
 .notes-page header{
+  background: rgb(98, 106, 119);
   max-width: 1920px;
   min-height: 100px;
   overflow: hidden;
