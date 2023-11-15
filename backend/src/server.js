@@ -22,23 +22,25 @@ const URI = process.env.MONGODB_URI
     ? process.env.MONGODB_URI
     : 'mongodb://localhost/databasetest';
 mongoose.connect(URI, {
-    useCreateIndex: true,
-    useFindAndModify: false,
+    
     useNewUrlParser: true,
-    useUnifiedTopology: true
-}, err =>{
-    if(err) throw err;
-    console.log('Connected to MongoDB')
-})
+   
+}
+);
 
 
 // Below MongoDB and  Above Listen Sever
-if(process.env.NODE_ENV === 'production'){
+/*if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'));
     app.get('*', (req, res) =>{
         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
     });
-}
+}*/
+
+const connection = mongoose.connection;
+connection.once('open', () => {
+    console.log('DB is connected');
+});
 
 
 
