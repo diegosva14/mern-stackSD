@@ -18,7 +18,9 @@ app.use('/api/notes', noteRouter)
 
 
 // Connect to MongoDB
-const URI = process.env.MONGODB_URL
+const URI = process.env.MONGODB_URI
+    ? process.env.MONGODB_URI
+    : 'mongodb://localhost/databasetest';
 mongoose.connect(URI, {
     useCreateIndex: true,
     useFindAndModify: false,
