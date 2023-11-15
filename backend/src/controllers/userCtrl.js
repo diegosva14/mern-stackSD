@@ -1,5 +1,4 @@
-
-const Users = require('../models/User');
+const Users = require('../models/userModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -59,4 +58,5 @@ const userCtrl = {
     } 
 }
 
-module.exports = userCtrl;
+
+module.exports = userCtrl
