@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from './notes/Nav'
-import Home from './notes/Home'
+import Header from './Nav'
+import Home from './Home'
 import CreateNote from './CreateNote'
 import EditNote from './EditNote'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
