@@ -15,7 +15,7 @@ export default function EditNote({match}) {
         const getNote = async () =>{
             const token = localStorage.getItem('tokenStore')
             if(match.params.id){
-                const res = await axios.get(`/api/notes/${match.params.id}`, {
+                const res = await axios.get(`https://mern-stacksd-backend.onrender.com/api/notes/${match.params.id}`, {
                     headers: {Authorization: token}
                 })
                 setNote({

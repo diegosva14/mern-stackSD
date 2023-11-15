@@ -26,7 +26,7 @@ export default function CreateNote() {
                     title, content, date
                 }
 
-                await axios.post('/api/notes', newNote, {
+                await axios.post('https://mern-stacksd-backend.onrender.com/api/notes', newNote, {
                     headers: {Authorization: token}
                 })
                 
