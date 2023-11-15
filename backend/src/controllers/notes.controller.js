@@ -1,36 +1,5 @@
 const notesCtrl = {};
 const Note = require('../models/Note');
-
-notesCtrl.createNote = async (req, res) => {
-    try {
-      const { title, content } = req.body;
-      const userId = req.user.id; // Obtener el userId del token JWT
-  
-      const newNote = new Note({
-        title,
-        content,
-        userId,
-      });
-  
-      const savedNote = await newNote.save();
-      res.status(201).json(savedNote);
-    } catch (error) {
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  };
-  
-  notesCtrl.getNotesByUser = async (req, res) => {
-    try {
-      const userId = req.user.id; // Obtener el userId del token JWT
-  
-      const userNotes = await Note.find({ userId });
-      res.status(200).json(userNotes);
-    } catch (error) {
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  };
-  
-
 notesCtrl.getNotes = async (req, res) => {
     const notes = await Note.find();
     res.json(notes);
