@@ -46,7 +46,7 @@ export default function CreateNote() {
                     <input type="text" value={note.title} id="title"
                     name="title" required onChange={onChangeInput} />
                 </div>
-                <button type="button" onClick={agregarCoctel}>
+                <button type="button" >
                 Agregar Cóctel
                  </button>
                 <div className="row">
