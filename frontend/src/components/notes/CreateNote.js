@@ -46,22 +46,28 @@ export default function CreateNote() {
           });
           
           console.log(response.data); // Agrega esta línea 
-          const coctelData = response.data;
-    
-          if (coctelData && coctelData.name && coctelData.ingredients) {
-            setNote({
-              ...note,
-              title: coctelData.name,
-              content: `Ingredients: ${coctelData.ingredients.join(', ')}`,
-            });
-          } else {
-            console.error('La respuesta de la API de cócteles no tiene el formato esperado.');
-          }
-        } catch (error) {
-          console.error('Error al obtener la receta del cóctel:', error.message);
-        }
-      };
+          console.log(response.data); // Imprime la respuesta completa en la consola
 
+    // Verifica si la respuesta es un array y si tiene al menos un objeto
+    if (Array.isArray(response.data) && response.data.length > 0) {
+      const coctelData = response.data[0];
+
+      if (coctelData && coctelData.name && coctelData.ingredients) {
+        setNote({
+          ...note,
+          title: coctelData.name,
+          content: `Ingredients: ${coctelData.ingredients.join(', ')}`,
+        });
+      } else {
+        console.error('La respuesta de la API de cócteles no tiene el formato esperado.');
+      }
+    } else {
+      console.error('La respuesta de la API de cócteles no es un array o no contiene elementos.');
+    }
+  } catch (error) {
+    console.error('Error al obtener la receta del cóctel:', error.message);
+  }
+};
     return (
         <div className="create-note">
             <h2>Create Note</h2>
