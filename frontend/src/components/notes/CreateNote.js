@@ -41,10 +41,11 @@ export default function CreateNote() {
     const agregarCoctel = async () => {
         try {
           const apiKey = 'dP7RmCevDceoicjgI+YU2Q==HnojcP8u9Ydzl4vo';
-          const response = await axios.get('https://api.api-ninjas.com/v1/cocktail?name=bloody mary', {
+          const response = await axios.get('https://api.api-ninjas.com/v1/cocktail?name=montenegroni', {
             headers: { 'X-Api-Key': apiKey }
           });
-    
+          
+          console.log(response.data); // Agrega esta línea 
           const coctelData = response.data;
     
           if (coctelData && coctelData.name && coctelData.ingredients) {
