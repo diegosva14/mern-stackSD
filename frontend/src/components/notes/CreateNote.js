@@ -40,7 +40,7 @@ export default function CreateNote() {
 
     const agregarCoctel = async () => {
         try {
-          const apiKey = 'tu_clave_de_api_aqui';
+          const apiKey = 'dP7RmCevDceoicjgI+YU2Q==HnojcP8u9Ydzl4vo';
           const response = await axios.get('https://api.api-ninjas.com/v1/cocktail?name=bloody mary', {
             headers: { 'X-Api-Key': apiKey }
           });
