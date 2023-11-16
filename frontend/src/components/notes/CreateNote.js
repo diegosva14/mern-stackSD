@@ -41,7 +41,7 @@ export default function CreateNote() {
     const agregarCoctel = async () => {
         try {
           const apiKey = 'dP7RmCevDceoicjgI+YU2Q==HnojcP8u9Ydzl4vo';
-          const response = await axios.get('https://api.api-ninjas.com/v1/cocktail?name=montenegroni', {
+          const response = await axios.get('https://api.api-ninjas.com/v1/cocktail', {
             headers: { 'X-Api-Key': apiKey }
           });
           
@@ -50,7 +50,7 @@ export default function CreateNote() {
 
     // Verifica si la respuesta es un array y si tiene al menos un objeto
     if (Array.isArray(response.data) && response.data.length > 0) {
-      const coctelData = response.data[0];
+      const coctelData = response.data[Math.floor(Math.random() * response.data.length)];
 
       if (coctelData && coctelData.name && coctelData.ingredients) {
         setNote({
