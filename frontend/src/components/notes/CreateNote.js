@@ -70,8 +70,12 @@ export default function CreateNote() {
   }
 };
     return (
+        <div>
+    <div className="instructions">
+      <p>¡Agrega un cóctel! Escribe el nombre en el título y haz clic en "Agregar Cóctel".</p>
+    </div>
         <div className="create-note">
-            <h2>Create Note</h2>
+            <h2>Add Recipe</h2>
             <form onSubmit={createNote} autoComplete="off">
                 <div className="row">
                     <label htmlFor="title">Title</label>
@@ -95,6 +99,7 @@ export default function CreateNote() {
 
                 <button type="submit">Save</button>
             </form>
+        </div>
         </div>
     )
 }
