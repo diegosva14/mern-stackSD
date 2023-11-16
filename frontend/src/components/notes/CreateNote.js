@@ -47,8 +47,8 @@ export default function CreateNote() {
           setNote({
             ...note,
             title: coctelData.name,
-            content: `Ingredients: ${coctelData.ingredients.join(', ')}`,
-            date: new Date().toISOString().split('T')[0] // Fecha actual
+            content: `Ingredients: ${coctelData.ingredients}`,
+            
           });
         } catch (error) {
           console.error('Error al obtener la receta del cóctel:', error.message);
