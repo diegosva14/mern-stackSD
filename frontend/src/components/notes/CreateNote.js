@@ -71,7 +71,7 @@ export default function CreateNote() {
 };
     return (
         <div>
-    <div className="instructions">
+    <div className="create-note">
       <p>¡Agrega un cóctel! Escribe el nombre en el título y haz clic en "Agregar Cóctel".</p>
     </div>
         <div className="create-note">
