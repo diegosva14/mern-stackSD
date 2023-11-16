@@ -37,6 +37,24 @@ export default function CreateNote() {
         }
     }
 
+    const agregarCoctel = async () => {
+        try {
+          const apiKey = 'tu_clave_de_api_aqui';
+          const response = await axios.get('https://api.api-ninjas.com/v1/cocktail?name=Margarita', {
+            headers: { 'X-Api-Key': apiKey }
+          });
+          const coctelData = response.data;
+          setNote({
+            ...note,
+            title: coctelData.name,
+            content: `Ingredients: ${coctelData.ingredients.join(', ')}`,
+            date: new Date().toISOString().split('T')[0] // Fecha actual
+          });
+        } catch (error) {
+          console.error('Error al obtener la receta del cóctel:', error.message);
+        }
+      };
+
     return (
         <div className="create-note">
             <h2>Create Note</h2>
