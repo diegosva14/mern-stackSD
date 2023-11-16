@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import {useHistory} from 'react-router-dom'
+const request = require('request');
 
 export default function CreateNote() {
     const [note, setNote] = useState({
@@ -37,22 +38,38 @@ export default function CreateNote() {
         }
     }
 
-    const agregarCoctel = async () => {
-        try {
-          const apiKey = 'dP7RmCevDceoicjgI+YU2Q==HnojcP8u9Ydzl4vo';
-          const response = await axios.get('https://api.api-ninjas.com/v1/cocktail?name=Margarita', {
-            headers: { 'X-Api-Key': apiKey }
-          });
-          const coctelData = response.data;
-          setNote({
-            ...note,
-            title: coctelData.name,
-            content: `Ingredients: ${coctelData.ingredients}`,
-            
-          });
-        } catch (error) {
-          console.error('Error al obtener la receta del cóctel:', error.message);
-        }
+    const agregarCoctel = () => {
+        const name = 'bloody mary';
+        const apiKey = 'dP7RmCevDceoicjgI+YU2Q==HnojcP8u9Ydzl4vo';
+    
+        request.get({
+          url: `https://api.api-ninjas.com/v1/cocktail?name=${name}`,
+          headers: {
+            'X-Api-Key': apiKey
+          },
+        }, function (error, response, body) {
+          if (error) {
+            console.error('Request failed:', error);
+          } else if (response.statusCode !== 200) {
+            console.error('Error:', response.statusCode, body.toString('utf8'));
+          } else {
+            try {
+              const coctelData = JSON.parse(body);
+    
+              if (coctelData && coctelData.name && coctelData.ingredients) {
+                setNote({
+                  ...note,
+                  title: coctelData.name,
+                  content: `Ingredients: ${coctelData.ingredients.join(', ')}`,
+                });
+              } else {
+                console.error('La respuesta de la API de cócteles no tiene el formato esperado.');
+              }
+            } catch (parseError) {
+              console.error('Error al analizar la respuesta de la API de cócteles:', parseError);
+            }
+          }
+        });
       };
 
     return (
