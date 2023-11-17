@@ -45,7 +45,7 @@ export default function EditNote({match}) {
                     title, content, date
                 }
 
-                await axios.put(`/api/notes/${id}`, newNote, {
+                await axios.put(`https://mern-stacksd-backend.onrender.com/api/notes/${id}`, newNote, {
                     headers: {Authorization: token}
                 })
                 
