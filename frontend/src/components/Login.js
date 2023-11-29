@@ -40,7 +40,7 @@ export default function Login({setIsLogin}) {
             err.response.data.msg && setErr(err.response.data.msg)
         }
     }
-
+   
     const [onLogin, setOnLogin] = useState(false)
     const style = {
         visibility: onLogin ? "visible" : "hidden",
