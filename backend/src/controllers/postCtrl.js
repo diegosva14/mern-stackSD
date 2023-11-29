@@ -1,4 +1,4 @@
-const Notes = require('../models/noteModel')
+const Notes = require('../models/postModel')
 
 const noteCtrl = {
     getPosts: async (req, res) => {

@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const auth = require('../middleware/auth')
-const noteCtrl = require('../controllers/noteCtrl')
+const noteCtrl = require('../controllers/postCtrl')
 
 router.route('/')
     .get(auth, noteCtrl.getPosts)
