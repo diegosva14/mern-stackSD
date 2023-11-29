@@ -1,14 +1,23 @@
 const Notes = require('../models/noteModel')
 
 const noteCtrl = {
-    getNotes: async (req, res) =>{
+    /*getNotes: async (req, res) =>{
         try {
             const notes = await Notes.find({user_id: req.user.id})
             res.json(notes)
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
-    },
+    },*/
+    getNotes: async (req, res) => {
+        try {
+          const notes = await Notes.find({}); // Removed the filter by user_id
+          res.json(notes)
+        } catch (err) {
+          return res.status(500).json({msg: err.message});
+        }
+      },
+      
     createNote: async(req, res) =>{
         try {
             const {title, content, date} = req.body;
