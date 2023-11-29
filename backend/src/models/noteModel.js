@@ -2,26 +2,48 @@ const mongoose = require('mongoose')
 
 
 const noteSchema = new mongoose.Schema({
-    title:{
+    title: {
         type: String,
         required: true
-    },
-    content:{
+      },
+      content: {
         type: String,
         required: true
-    },
-    date:{
+      },
+      date: {
         type: Date,
         default: Date.now
-    },
-    user_id: {
-        type: String,
-        required: true
-    },
-    name:{
-        type: String,
-        required: true
-    }
+      },
+      user: {
+        id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'User',
+          required: true
+        },
+        name: {
+          type: String,
+          required: true
+        }
+      },
+      likes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      }],
+      comments: [{
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'User',
+          required: true
+        },
+        text: {
+          type: String,
+          required: true
+        },
+        date: {
+          type: Date,
+          default: Date.now
+        }
+      }]
 },{
     timestamps: true
 })
