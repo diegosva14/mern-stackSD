@@ -1,4 +1,4 @@
-const Notes = require('../models/postModel')
+const Post = require('../models/postModel')
 
 const noteCtrl = {
     getPosts: async (req, res) => {
@@ -28,7 +28,7 @@ const noteCtrl = {
     },
     deletePost: async(req, res) =>{
         try {
-            await Notes.findByIdAndDelete(req.params.id)
+            await Post.findByIdAndDelete(req.params.id)
             res.json({msg: "Deleted a Note"})
         } catch (err) {
             return res.status(500).json({msg: err.message})
@@ -37,7 +37,7 @@ const noteCtrl = {
     updatePost: async(req, res) =>{
         try {
             const {title, content, date} = req.body;
-            await Notes.findOneAndUpdate({_id: req.params.id},{
+            await Post.findOneAndUpdate({_id: req.params.id},{
                 title,
                 content,
                 date
