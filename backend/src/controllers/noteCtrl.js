@@ -1,28 +1,29 @@
 const Notes = require('../models/noteModel')
 
 const noteCtrl = {
-    getNotes: async (req, res) =>{
+    getPosts: async (req, res) => {
         try {
-            const notes = await Notes.find({user_id: req.user.id})
-            res.json(notes)
+            const posts = await Post.find().sort({ createdAt: -1 });
+            res.json(posts);
         } catch (err) {
-            return res.status(500).json({msg: err.message})
+            return res.status(500).json({ msg: err.message });
         }
     },
-    createNote: async(req, res) =>{
+    createPost: async (req, res) => {
         try {
-            const {title, content, date} = req.body;
-            const newNote = new Notes({
+            const { title, content } = req.body;
+            const newPost = new Post({
                 title,
                 content,
-                date,
-                user_id: req.user.id,
-                name: req.user.name
-            })
-            await newNote.save()
-            res.json({msg: "Created a Note"})
+                user: {
+                    id: req.user.id,
+                    name: req.user.name
+                }
+            });
+            await newPost.save();
+            res.json({ msg: "Created a Post" });
         } catch (err) {
-            return res.status(500).json({msg: err.message})
+            return res.status(500).json({ msg: err.message });
         }
     },
     deleteNote: async(req, res) =>{
@@ -44,6 +45,39 @@ const noteCtrl = {
             res.json({msg: "Updated a Note"})
         } catch (err) {
             return res.status(500).json({msg: err.message})
+        }
+    },
+    likePost: async (req, res) => {
+        try {
+            const post = await Post.findById(req.params.id);
+            // Comprobar si el post ya ha sido likeado por este usuario
+            if (post.likes.includes(req.user.id)) {
+                // Si ya tiene like, deslikear
+                const index = post.likes.indexOf(req.user.id);
+                post.likes.splice(index, 1);
+            } else {
+                // Si no, dar like
+                post.likes.push(req.user.id);
+            }
+            await post.save();
+            res.json({ msg: "Liked/Unliked a Post" });
+        } catch (err) {
+            return res.status(500).json({ msg: err.message });
+        }
+    },
+    commentOnPost: async (req, res) => {
+        try {
+            const { comment } = req.body;
+            const post = await Post.findById(req.params.id);
+            post.comments.push({
+                user: req.user.id,
+                text: comment,
+                date: new Date() // Opcional, ya que estamos utilizando timestamps
+            });
+            await post.save();
+            res.json({ msg: "Commented on a Post" });
+        } catch (err) {
+            return res.status(500).json({ msg: err.message });
         }
     },
     getNote: async(req, res) => {
