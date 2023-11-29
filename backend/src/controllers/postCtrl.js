@@ -26,7 +26,7 @@ const noteCtrl = {
             return res.status(500).json({ msg: err.message });
         }
     },
-    deleteNote: async(req, res) =>{
+    deletePost: async(req, res) =>{
         try {
             await Notes.findByIdAndDelete(req.params.id)
             res.json({msg: "Deleted a Note"})
@@ -34,7 +34,7 @@ const noteCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
-    updateNote: async(req, res) =>{
+    updatePost: async(req, res) =>{
         try {
             const {title, content, date} = req.body;
             await Notes.findOneAndUpdate({_id: req.params.id},{
@@ -80,7 +80,7 @@ const noteCtrl = {
             return res.status(500).json({ msg: err.message });
         }
     },
-    getNote: async(req, res) => {
+    getPost: async(req, res) => {
         try {
             const note = await Notes.findById(req.params.id)
             res.json(note)
