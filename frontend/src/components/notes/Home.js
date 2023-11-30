@@ -78,7 +78,17 @@ export default function Home() {
         </button>
       </div>
       <button className="close" onClick={() => deleteNote(note._id)}>X</button>
-      
+      <div className="comments-section">
+        {note.comments.map(comment => (
+          <div key={comment._id} className="comment">
+            <strong>{comment.authorName}</strong>: {comment.text}
+          </div>
+        ))}
+      </div>
+      <form onSubmit={e => submitComment(e, note._id)}>
+        <input type="text" placeholder="Escribe un comentario..." />
+        <button type="submit">Comentar</button>
+      </form>
     </div>
   ))}
 </div>
