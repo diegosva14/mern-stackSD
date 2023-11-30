@@ -43,7 +43,7 @@ const noteCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
-    updateNote: async(req, res) =>{
+    /*updateNote: async(req, res) =>{
         try {
             const {title, content, date} = req.body;
             await Notes.findOneAndUpdate({_id: req.params.id},{
@@ -55,7 +55,30 @@ const noteCtrl = {
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
-    },
+    },*/
+    updateNote: async (req, res) => {
+        try {
+          const { title, content, date } = req.body;
+          // Buscar la nota para obtener el user_id
+          const note = await Notes.findById(req.params.id);
+          // Comprobar si la nota pertenece al usuario autenticado
+          if (note.user_id.toString() !== req.user.id) {
+            return res.status(401).json({ msg: 'User not authorized' });
+          }
+      
+          // Si el usuario es autorizado, actualizar la nota
+          const updatedNote = await Notes.findByIdAndUpdate(
+            req.params.id,
+            { title, content, date },
+            { new: true }
+          );
+      
+          res.json(updatedNote);
+        } catch (err) {
+          return res.status(500).json({ msg: err.message });
+        }
+      },
+      
     getNote: async(req, res) => {
         try {
             const note = await Notes.findById(req.params.id)
