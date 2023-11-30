@@ -38,7 +38,7 @@ export default function Home() {
     const toggleLike = async (noteId) => {
         try {
           // Llamada al endpoint para incrementar el contador de likes
-          const response = await axios.put(`/api/notes/${noteId}/like`);
+          const response = await axios.put(`https://mern-stacksd-backend.onrender.com/api/notes/${noteId}/like`);
           // Actualiza el estado de las notas con el nuevo conteo de likes
           setNotes(notes.map(note => {
             if (note._id === noteId) {
