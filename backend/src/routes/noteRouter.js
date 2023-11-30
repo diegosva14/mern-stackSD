@@ -11,5 +11,8 @@ router.route('/:id')
     .put(auth, noteCtrl.updateNote)
     .delete(auth, noteCtrl.deleteNote)
 
+router.route('/:id/like')
+    .put(auth, noteCtrl.likeNote);
+
 
 module.exports = router

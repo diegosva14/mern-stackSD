@@ -102,7 +102,26 @@ const noteCtrl = {
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
-    }
+    },
+
+    likeNote: async (req, res) => {
+        try {
+          const note = await Notes.findById(req.params.id);
+          // Verifica si el usuario ya ha dado "like"
+          if (note.likes.includes(req.user.id)) {
+            // Si es así, quitar el "like"
+            note.likes.pull(req.user.id);
+          } else {
+            // Si no, añadir el "like"
+            note.likes.push(req.user.id);
+          }
+          await note.save();
+          res.json(note);
+        } catch (err) {
+          return res.status(500).json({ msg: err.message });
+        }
+      }
+      
 }
 
 module.exports = noteCtrl
