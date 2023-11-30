@@ -15,7 +15,7 @@ export default function Notes({setIsLogin}) {
                 <Route path="/" component={Home} exact />
                 <Route path="/create" component={CreateNote} exact />
                 <Route path="/edit/:id" component={EditNote} exact />
-                
+                <Route path="/profile/:username" component={UserProfile} />
             </section>
             
         </div>
