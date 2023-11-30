@@ -14,6 +14,7 @@ router.route('/:id')
 router.route('/:id/like')
     .put(auth, noteCtrl.likeNote);
 
+router.route('/:id/comments').post(auth, noteCtrl.addComment);
 
 
 
