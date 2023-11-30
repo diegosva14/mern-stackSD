@@ -6,7 +6,7 @@ import axios from 'axios'
 export default function Home() {
     const [notes, setNotes] = useState([])
     const [token, setToken] = useState('')
-    //const [comments, setComments] = useState([]);
+    const [comments, setComments] = useState([]);
 
     const getNotes = async (token) =>{
         const res = await axios.get('https://mern-stacksd-backend.onrender.com/api/notes', {
@@ -61,7 +61,7 @@ export default function Home() {
       
       const submitComment = async (e, noteId) => {
         e.preventDefault();
-        const commentText = e.target[0].value; // Obtén el valor del input del formulario
+        const commentText = e.target.elements.commentInput.value; // Obtén el valor del input del formulario
         try {
           const token = localStorage.getItem('tokenStore');
           if (token) {
@@ -76,7 +76,13 @@ export default function Home() {
               }
               return note;
             }));
-      
+            const newComment = {
+                text: commentText,
+                authorName: "NombreUsuario", // Reemplaza con el nombre de usuario real desde el estado o props
+              };
+              
+              setComments([...comments, newComment]);
+              e.target.elements.commentInput.value = '';
             e.target[0].value = ''; // Limpiar el input del comentario
           }
         } catch (err) {
@@ -88,7 +94,7 @@ export default function Home() {
 
     return (
        
-        <div className="note-wrapper">
+    <div className="note-wrapper">
   {notes.map(note => (
     <div className="card" key={note._id}>
       <h4 title={note.title}>{note.title}</h4>
@@ -105,16 +111,16 @@ export default function Home() {
       </div>
       <button className="close" onClick={() => deleteNote(note._id)}>X</button>
       <div className="comments-section">
-        {note.comments.map(comment => (
-          <div key={comment._id} className="comment">
-            <strong>{comment.authorName}</strong>: {comment.text}
-          </div>
-        ))}
+    {comments.map((comment, index) => (
+      <div key={index} className="comment">
+        {comment.authorName}: {comment.text}
       </div>
-      <form onSubmit={e => submitComment(e, note._id)}>
-        <input type="text" placeholder="Escribe un comentario..." />
-        <button type="submit">Comentar</button>
-      </form>
+    ))}
+  </div>
+  <form onSubmit={(e) => submitComment(e, note._id)}>
+    <input name="commentInput" type="text" placeholder="Escribe un comentario..." />
+    <button type="submit">Comentar</button>
+  </form>
     </div>
   ))}
 </div>
