@@ -35,26 +35,29 @@ export default function Home() {
         }
     }
 
-    const toggleLike = async (noteId) => {
+    const likeNote = async (noteId) => {
         try {
-          // Llamada al endpoint para incrementar el contador de likes
-          const response = await axios.put(`https://mern-stacksd-backend.onrender.com/api/notes/${noteId}/like`, {
-            headers: {Authorization: token}
-        })
-    console.log(response.data); // Muestra la respuesta del servi
-          // Actualiza el estado de las notas con el nuevo conteo de likes
-          setNotes(notes.map(note => {
-            if (note._id === noteId) {
-              return { ...note, likes: response.data };
+            const token = localStorage.getItem('tokenStore');
+            if (token) {
+                // Suponiendo que tu endpoint solo necesita saber qué nota "likear"
+                // y que se encarga de incrementar el número de "likes" internamente.
+                await axios.put(`https://mern-stacksd-backend.onrender.com/api/notes/${noteId}/like`, {}, {
+                    headers: { Authorization: token }
+                });
+    
+                // Aquí deberías actualizar el estado para reflejar el cambio en la interfaz de usuario.
+                // Esto dependerá de cómo estés manejando el estado en tu componente.
+                // Por ejemplo, si tienes un estado que contiene todas las notas, podrías hacer algo así:
+                setNotes(prevNotes => prevNotes.map(note => 
+                    note._id === noteId ? { ...note, likes: note.likes + 1 } : note
+                ));
             }
-            return note;
-          }));
-        } catch (error) {
-            console.error('Error al dar like a la nota', error);
-            console.log(error.response.data); // Esto mostrará el mensaje de error del servidor
-          // Manejo de errores
+        } catch (err) {
+            console.error('Error al dar like a la nota', err);
+            // Aquí deberías manejar el error, por ejemplo, mostrando un mensaje al usuario.
         }
-      };
+    }
+    
 
     return (
        
