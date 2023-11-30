@@ -42,5 +42,5 @@ const commentSchema = new mongoose.Schema({
       required: true,
     }
   });
-
+  module.exports = mongoose.model('Comments', commentSchema)
 module.exports = mongoose.model('Notes', noteSchema)
