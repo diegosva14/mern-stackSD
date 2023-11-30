@@ -16,6 +16,7 @@ export default function Nav({setIsLogin}) {
             <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/create">ADD POST</Link></li>
+                <li><Link to={`/profile/${userInfo.username}`}>{userInfo.username}</Link></li>
                 <li onClick={logoutSubmit}><Link to="/">Logout</Link></li>
             </ul>
         </header>
