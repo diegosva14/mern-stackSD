@@ -62,14 +62,12 @@ export default function Home() {
       const submitComment = async (e, noteId) => {
         e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
           // Añade una declaración de consola para asegurarte de que e.target es el formulario
-  console.log(e.target);
+        console.log(e.target);
 
-  // Añade otra declaración de consola para verificar el elemento input específico
-  console.log(e.target.elements.commentText);
+        // Añade otra declaración de consola para verificar el elemento input específico
+        console.log(e.target.elements.commentText);
 
   
-  
- 
         const commentText = e.target.elements.commentText.value; // Obtener el valor del campo de texto del comentario
         console.log(commentText); // Esto debería mostrar el texto del comentario
         try {
@@ -128,11 +126,12 @@ export default function Home() {
       </div>
       <button className="close" onClick={() => deleteNote(note._id)}>X</button>
       <div className="comments-section">
-    {comments.map((comment, index) => (
-      <div key={index} className="comment">
-        {comment.authorName}: {comment.text}
-      </div>
-    ))}
+      {note.comments.map((comment, index) => (
+  <div key={comment._id} className="comment">
+    {comment.authorName}: {comment.text || 'Sin texto'}
+  </div>
+))}
+
   </div>
   <form onSubmit={(e) => submitComment(e, note._id)}>
   <input name="commentText" type="text" placeholder="Escribe un comentario..." required />
