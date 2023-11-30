@@ -45,9 +45,9 @@ export default function Home() {
       
             // Actualiza el estado de las notas
             setNotes(notes.map(note => {
-              if (note._id === noteId) {
-                // Asumiendo que el backend devuelve el nuevo conteo de likes
-                return { ...note, likes: response.data.likes };
+                if (note._id === noteId) {
+                  // Asumiendo que el backend devuelve la cantidad de likes actualizada
+                  return { ...note, likes: Array(response.data.likes).fill(undefined) };
               }
               return note;
             }));
@@ -74,7 +74,7 @@ export default function Home() {
         {note.name}
         {/* Aquí se añade el botón que llama a toggleLike cuando se hace clic */}
         <button className="like-button" onClick={() => likeNote(note._id)}>
-          👍 {note.likes}
+          👍 {note.likes?.length || 0}
         </button>
       </div>
       <button className="close" onClick={() => deleteNote(note._id)}>X</button>
