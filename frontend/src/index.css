@@ -59,69 +59,9 @@ a{
   box-shadow: 0 0 5px rgb(7,25,63);
   padding: 20px 0;
 }
-/*test*/
-/* Container for the notes */
-.note-wrapper {
-  max-width: 650px; /* Adjust based on your preference */
-  margin: 2rem auto;
-  padding: 1rem;
-}
 
-/* Style for individual notes */
-.card {
-  background: #34495e;
-  margin-bottom: 1rem; /* Add space between cards */
-  padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
 
-/* Title of the note */
-.card h4 {
-  font-size: 1.25rem; /* Larger font size for titles */
-  margin-bottom: 0.5rem;
-}
 
-/* Content of the note */
-.card p {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  color: #ddd; /* Lighter text for content */
-}
-
-/* Meta information like date and username */
-.card .date, .card-footer {
-  font-size: 0.85rem;
-  color: #aab7c4;
-}
-
-/* Footer containing actions */
-.card-footer {
-  text-align: right; /* Align edit/delete actions to the right */
-}
-
-/* Edit and delete buttons */
-.button-edit, .button-delete {
-  padding: 0.25rem 0.5rem;
-  margin-left: 0.5rem; /* Space out buttons */
-  background: #4e6aff; /* Use the primary color for buttons */
-  color: white;
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  text-decoration: none; /* Remove underline from links */
-}
-
-.button-delete {
-  background: #e74c3c; /* Red color for delete to indicate a warning action */
-}
-
-/* Hover effects for buttons */
-.button-edit:hover, .button-delete:hover {
-  opacity: 0.9;
-}
-
-/*
 .note-wrapper{
   max-width: 1920px;
   display: flex;
@@ -180,7 +120,7 @@ a{
   letter-spacing: 2px;
   font-size: 12px;
 }
-*/
+
 /* ******* Create Note******************* */
 .create-note{
   max-width: 500px;
