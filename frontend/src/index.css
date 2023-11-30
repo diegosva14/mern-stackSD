@@ -69,7 +69,15 @@ a{
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-
+.card {
+  background-color: #1e1e1e; /* Color de fondo para todas las tarjetas */
+  color: #fff; /* Color de texto para todas las tarjetas */
+  margin-bottom: 20px; /* Espacio entre tarjetas */
+  padding: 20px; /* Espaciado interno para todas las tarjetas */
+  border-radius: 5px; /* Bordes redondeados para todas las tarjetas */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para todas las tarjetas */
+}
+/*
 .card{
   width: 600px;
   box-shadow: 0 0 5px rgb(7,25,63);
@@ -80,7 +88,7 @@ a{
   margin: 15px;
   cursor: pointer;
 }
-
+*/
 /* Estilo del título de la nota */
 .note-title {
   margin: 0;
