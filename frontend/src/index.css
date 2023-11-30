@@ -67,12 +67,15 @@ a{
   padding: 0;
 }
 
-.card {
-  box-shadow: none; /* Eliminar sombra para un aspecto más plano */
-  background: #2c3e50; /* Color de fondo igual al cuerpo para integración */
-  margin: 0; /* Remover margen para un estilo de lista */
-  border-bottom: 1px solid #3e5166; /* Añadir borde para separar las notas */
-  cursor: default; /* Cambiar a default si no es clickeable la tarjeta entera */
+.card{
+  width: 300px;
+  box-shadow: 0 0 5px rgb(7,25,63);
+  background: rgb(7,25,63);
+  padding: 10px;
+  position: relative;
+  color: #ddd;
+  margin: 15px;
+  cursor: pointer;
 }
 
 .card h4, .card .text-wrapper, .card .date, .card-footer {
