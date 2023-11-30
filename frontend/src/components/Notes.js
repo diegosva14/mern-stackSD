@@ -10,12 +10,12 @@ export default function Notes({setIsLogin}) {
     return (
         <Router>
         <div className="notes-page">
-            <Header setIsLogin={setIsLogin} userInfo={userInfo}/>
+            <Header setIsLogin={setIsLogin} />
             <section>
                 <Route path="/" component={Home} exact />
                 <Route path="/create" component={CreateNote} exact />
                 <Route path="/edit/:id" component={EditNote} exact />
-                <Route path="/profile/:username" component={UserProfile} /> 
+                
             </section>
             
         </div>
