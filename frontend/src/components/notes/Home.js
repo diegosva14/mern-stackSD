@@ -73,7 +73,7 @@ export default function Home() {
       
             // Enviar el comentario al backend
             const response = await axios.post(`https://mern-stacksd-backend.onrender.com/api/notes/${noteId}/comments`, comment, {
-              headers: { Authorization: `Bearer ${token}` }
+              headers: { Authorization: token}
             });
       
             // Actualizar el estado de la aplicación con el nuevo comentario
