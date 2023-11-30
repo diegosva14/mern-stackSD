@@ -20,10 +20,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    /*profilePicture: {
+    bio: {
+        type: String,
+        default: '',
+      },
+    profilePicture: {
         type: String,
         default: '../assets/profile-pic.png'
-      }*/
+      }
 }, {
     timestamps: true
 })

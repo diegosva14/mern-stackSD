@@ -113,13 +113,13 @@ export default function Home() {
   {notes.map(note => (
     <div className="card" key={note._id}>
       {note.name}
-      <h4 title={note.title}>{note.name}{note.title}</h4>
+      <h4 title={note.title}>{note.title}</h4>
       <div className="text-wrapper">
         <p>{note.content}</p>
       </div>
       <p className="date">{format(note.createdAt)}</p>
       <div className="card-footer">
-        {note.name}
+       
         {/* Aquí se añade el botón que llama a toggleLike cuando se hace clic */}
         <button className="like-button" onClick={() => likeNote(note._id)}>
           👍 {note.likes?.length || 0}
