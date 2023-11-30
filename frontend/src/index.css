@@ -60,89 +60,65 @@ a{
   padding: 20px 0;
 }
 /*test*/
-/* Card container */
+/* Container for the notes */
 .note-wrapper {
-  max-width: 800px;
-  margin: 20px auto;
-  background: #34495e;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  max-width: 650px; /* Adjust based on your preference */
+  margin: 2rem auto;
+  padding: 1rem;
 }
 
-/* Individual note cards */
+/* Style for individual notes */
 .card {
-  border-bottom: 1px solid #4e6aff;
-  padding: 15px;
-  display: flex;
-  align-items: flex-start; /* Align items to the start to handle varying content length */
-  justify-content: space-between;
+  background: #34495e;
+  margin-bottom: 1rem; /* Add space between cards */
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Title and content */
-.card h4, .card p {
-  color: #ecf0f1;
-  margin: 5px 0; /* Add some space between title and content */
+/* Title of the note */
+.card h4 {
+  font-size: 1.25rem; /* Larger font size for titles */
+  margin-bottom: 0.5rem;
 }
 
-/* Close and edit buttons */
-.card .close, .card-footer a {
-  background: none;
-  color: #bbb; /* Less contrast for a subtler look */
-  padding: 5px 10px;
-  border-radius: 4px;
+/* Content of the note */
+.card p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #ddd; /* Lighter text for content */
 }
 
-.card .close:hover, .card-footer a:hover {
-  background: #4e6aff;
-  color: white;
-  text-decoration: none;
-}
-
-/* Date and user name */
-.date, .card-footer {
-  font-size: 0.9rem;
+/* Meta information like date and username */
+.card .date, .card-footer {
+  font-size: 0.85rem;
   color: #aab7c4;
 }
 
-/* Content wrapper */
-.card .text-wrapper {
-  display: block;
-  color: #ddd;
-}
-
-/* Date alignment */
-.card .date {
-  text-align: left;
-  color: #999;
-}
-
-/* Footer styling */
+/* Footer containing actions */
 .card-footer {
-  align-self: stretch; /* Make footer stretch to the bottom */
-  background: transparent; /* Clear background for a cleaner look */
-  padding-left: 10px;
-  display: flex;
-  align-items: center; /* Vertically center the content */
+  text-align: right; /* Align edit/delete actions to the right */
 }
 
-/* Edit button specifically */
-.card-footer a {
-  margin-left: auto; /* Push edit link to the right */
+/* Edit and delete buttons */
+.button-edit, .button-delete {
+  padding: 0.25rem 0.5rem;
+  margin-left: 0.5rem; /* Space out buttons */
+  background: #4e6aff; /* Use the primary color for buttons */
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  text-decoration: none; /* Remove underline from links */
 }
 
-/* Spacing between cards */
-.card:not(:last-child) {
-  margin-bottom: 10px; /* Add space between cards */
+.button-delete {
+  background: #e74c3c; /* Red color for delete to indicate a warning action */
 }
 
-/* Additional global link styles */
-a {
-  color: #4e6aff;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
+/* Hover effects for buttons */
+.button-edit:hover, .button-delete:hover {
+  opacity: 0.9;
 }
 
 /*
