@@ -60,70 +60,89 @@ a{
   padding: 20px 0;
 }
 /*test*/
+/* Card container */
 .note-wrapper {
-  max-width: 800px; /* Ajusta esto según el ancho deseado */
-  margin: 20px auto; /* Centrar en la página con algo de margen arriba/abajo */
-  background: #34495e; /* Un fondo ligeramente diferente para resaltar */
-  border-radius: 8px; /* Bordes redondeados para suavizar */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
+  max-width: 800px;
+  margin: 20px auto;
+  background: #34495e;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Individual note cards */
 .card {
-  border-bottom: 1px solid #4e6aff; /* Línea divisoria entre notas */
-  padding: 15px; /* Espaciado interno para cada nota */
-  display: flex; /* Flexbox para alinear los elementos internos */
-  align-items: center; /* Alinear los elementos verticalmente */
-  justify-content: space-between; /* Espacio entre los elementos */
+  border-bottom: 1px solid #4e6aff;
+  padding: 15px;
+  display: flex;
+  align-items: flex-start; /* Align items to the start to handle varying content length */
+  justify-content: space-between;
 }
 
+/* Title and content */
 .card h4, .card p {
-  margin: 0; /* Remueve el margen por defecto */
-  color: #ecf0f1; /* Color claro para el texto */
+  color: #ecf0f1;
+  margin: 5px 0; /* Add some space between title and content */
 }
 
-.card .close {
+/* Close and edit buttons */
+.card .close, .card-footer a {
   background: none;
-  color: #fff;
+  color: #bbb; /* Less contrast for a subtler look */
+  padding: 5px 10px;
+  border-radius: 4px;
 }
+
+.card .close:hover, .card-footer a:hover {
+  background: #4e6aff;
+  color: white;
+  text-decoration: none;
+}
+
+/* Date and user name */
 .date, .card-footer {
-  font-size: 0.9rem; /* Tamaño de fuente más pequeño para meta-datos */
-  color: #aab7c4; /* Color más suave para los meta-datos */
+  font-size: 0.9rem;
+  color: #aab7c4;
 }
+
+/* Content wrapper */
 .card .text-wrapper {
-  height: auto; /* Permitir que el contenido defina la altura */
-  display: block; /* Cambiar de box a block */
+  display: block;
   color: #ddd;
-  font-size: 1rem; /* Ajustar tamaño de fuente */
-  -webkit-line-clamp: unset; /* Eliminar restricción de líneas visibles */
 }
 
+/* Date alignment */
 .card .date {
-  text-align: left; /* Alinear fecha a la izquierda */
-  font-size: 0.8rem; /* Reducir tamaño de la fuente de la fecha */
-  color: #999; /* Cambiar el color para una menor prominencia */
+  text-align: left;
+  color: #999;
 }
 
+/* Footer styling */
 .card-footer {
-  justify-content: start; /* Alinear contenido al inicio */
-  padding-left: 10px; /* Añadir padding a la izquierda */
-  height: auto; /* Ajustar la altura automáticamente */
-  background: #333; /* Fondo oscuro para el pie de página de la tarjeta */
+  align-self: stretch; /* Make footer stretch to the bottom */
+  background: transparent; /* Clear background for a cleaner look */
+  padding-left: 10px;
+  display: flex;
+  align-items: center; /* Vertically center the content */
 }
 
-/* Estilos adicionales para botones y enlaces */
-button, .card-footer a {
-  background: #4e6aff; /* Fondo azul para botones/enlaces */
-  color: white; /* Texto en blanco para contraste */
-  border: none; /* Sin bordes */
-  padding: 8px 16px; /* Espaciado interno */
-  text-decoration: none; /* No subrayado para los enlaces */
-  border-radius: 4px; /* Bordes redondeados para los botones/enlaces */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para botones/enlaces */
+/* Edit button specifically */
+.card-footer a {
+  margin-left: auto; /* Push edit link to the right */
 }
 
-button:hover, .card-footer a:hover {
-  color: #7290ff; /* Color al pasar el ratón por encima */
-  text-decoration: underline; /* Subrayado al pasar el ratón por encima para enlaces */
+/* Spacing between cards */
+.card:not(:last-child) {
+  margin-bottom: 10px; /* Add space between cards */
+}
+
+/* Additional global link styles */
+a {
+  color: #4e6aff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 /*
