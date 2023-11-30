@@ -35,14 +35,30 @@ const noteCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
-    deleteNote: async(req, res) =>{
+    deleteNote: async (req, res) => {
+        try {
+          // Buscar la nota para obtener el user_id
+          const note = await Notes.findById(req.params.id);
+          // Comprobar si la nota pertenece al usuario autenticado
+          if (note.user_id.toString() !== req.user.id) {
+            return res.status(401).json({ msg: 'User not authorized' });
+          }
+      
+          await note.remove();
+          res.json({ msg: 'Deleted a Note' });
+        } catch (err) {
+          return res.status(500).json({ msg: err.message });
+        }
+      },
+      
+  /*  deleteNote: async(req, res) =>{
         try {
             await Notes.findByIdAndDelete(req.params.id)
             res.json({msg: "Deleted a Note"})
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
-    },
+    },*/
     /*updateNote: async(req, res) =>{
         try {
             const {title, content, date} = req.body;
