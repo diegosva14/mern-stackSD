@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-export default function Nav({setIsLogin}) {
+export default function Nav({setIsLogin,userInfo}) {
 
     const logoutSubmit = () =>{
         localStorage.clear()
