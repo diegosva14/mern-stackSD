@@ -6,6 +6,7 @@ import axios from 'axios'
 export default function Home() {
     const [notes, setNotes] = useState([])
     const [token, setToken] = useState('')
+    //const [comments, setComments] = useState([]);
 
     const getNotes = async (token) =>{
         const res = await axios.get('https://mern-stacksd-backend.onrender.com/api/notes', {
@@ -64,7 +65,7 @@ export default function Home() {
         try {
           const token = localStorage.getItem('tokenStore');
           if (token) {
-            const response = await axios.post(`/api/notes/${noteId}/comments`, { text: commentText }, {
+            const response = await axios.post(`https://mern-stacksd-backend.onrender.com/api/notes/api/notes/${noteId}/comments`, { text: commentText }, {
               headers: { Authorization: token }
             });
       
