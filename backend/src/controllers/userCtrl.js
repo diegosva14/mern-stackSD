@@ -76,7 +76,20 @@ const userCtrl = {
         } catch (error) {
           res.status(500).json({ message: error.message });
         }
-      }
+      },
+      getUserByUsername : async (req, res) => {
+        try {
+            // Encuentra el usuario por username. Asegúrate de que el modelo de usuario tiene un campo 'username'.
+            const user = await Users.findOne({ username: req.params.username }).select('-password');
+            if (!user) {
+                return res.status(404).json({ msg: 'Usuario no encontrado' });
+            }
+            res.json(user);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Error en el servidor');
+        }
+    }
 }
 
 

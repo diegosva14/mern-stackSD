@@ -16,4 +16,8 @@ router.put('/bio', auth, userCtrl.updateBio);
 // Ruta para actualizar la foto de perfil del usuario
 router.put('/profile-picture', auth, userCtrl.updateProfilePicture);
 
+// Ruta para obtener la información del usuario por username
+router.get('/:username', auth, userCtrl.getUserByUsername);
+
+
 module.exports = router
