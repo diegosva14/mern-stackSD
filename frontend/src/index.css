@@ -59,9 +59,112 @@ a{
   box-shadow: 0 0 5px rgb(7,25,63);
   padding: 20px 0;
 }
+/* Estilo del contenedor de la nota */
+.note-wrapper {
+  background-color: #1e1e1e;
+  color: #fff;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 
+/* Estilo del título de la nota */
+.note-title {
+  margin: 0;
+  padding-bottom: 10px;
+  font-size: 24px;
+  border-bottom: 1px solid #333;
+}
 
+/* Estilo del cuerpo de la nota */
+.text-wrapper {
+  margin-top: 20px;
+}
 
+/* Estilo de la fecha y el usuario */
+.date {
+  font-size: 14px;
+  color: #999;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Estilo del pie de la nota */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilo del botón Me gusta */
+.like-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Estilo del botón Cerrar */
+.close {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Estilo de la sección de comentarios */
+.comments-section {
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Estilo de cada comentario */
+.comment {
+  color: #999;
+  margin-bottom: 5px;
+}
+
+/* Estilo para el input de comentario */
+.comment-input {
+  width: calc(100% - 40px);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: none;
+}
+
+/* Estilo del botón Comentar */
+.comment-button {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/*
 .note-wrapper{
   max-width: 1920px;
   display: flex;
@@ -120,7 +223,7 @@ a{
   letter-spacing: 2px;
   font-size: 12px;
 }
-
+*/
 /* ******* Create Note******************* */
 .create-note{
   max-width: 500px;
