@@ -61,29 +61,34 @@ a{
 }
 /*test*/
 .note-wrapper {
-  max-width: 1920px;
-  display: block; /* Cambiado de flex a block para un diseño de lista */
-  margin: auto;
-  padding: 0;
+  max-width: 800px; /* Ajusta esto según el ancho deseado */
+  margin: 20px auto; /* Centrar en la página con algo de margen arriba/abajo */
+  background: #34495e; /* Un fondo ligeramente diferente para resaltar */
+  border-radius: 8px; /* Bordes redondeados para suavizar */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
 }
 
 .card {
-  box-shadow: none; /* Eliminar sombra para un aspecto más plano */
-  background: #2c3e50; /* Color de fondo igual al cuerpo para integración */
-  margin: 0; /* Remover margen para un estilo de lista */
-  border-bottom: 1px solid #3e5166; /* Añadir borde para separar las notas */
-  cursor: default; /* Cambiar a default si no es clickeable la tarjeta entera */
+  border-bottom: 1px solid #4e6aff; /* Línea divisoria entre notas */
+  padding: 15px; /* Espaciado interno para cada nota */
+  display: flex; /* Flexbox para alinear los elementos internos */
+  align-items: center; /* Alinear los elementos verticalmente */
+  justify-content: space-between; /* Espacio entre los elementos */
 }
 
-.card h4, .card .text-wrapper, .card .date, .card-footer {
-  padding: 10px; /* Agregar padding para espaciar contenido */
+.card h4, .card p {
+  margin: 0; /* Remueve el margen por defecto */
+  color: #ecf0f1; /* Color claro para el texto */
 }
 
 .card .close {
   background: none;
   color: #fff;
 }
-
+.date, .card-footer {
+  font-size: 0.9rem; /* Tamaño de fuente más pequeño para meta-datos */
+  color: #aab7c4; /* Color más suave para los meta-datos */
+}
 .card .text-wrapper {
   height: auto; /* Permitir que el contenido defina la altura */
   display: block; /* Cambiar de box a block */
@@ -107,12 +112,13 @@ a{
 
 /* Estilos adicionales para botones y enlaces */
 button, .card-footer a {
-  color: #4e6aff; /* Color para botones y enlaces */
-  background: transparent;
-  border: none;
-  text-transform: none; /* Remover transformación de texto en mayúsculas */
-  letter-spacing: normal; /* Restablecer espaciado de letras */
-  margin: 0 5px; /* Margen entre botones y enlaces */
+  background: #4e6aff; /* Fondo azul para botones/enlaces */
+  color: white; /* Texto en blanco para contraste */
+  border: none; /* Sin bordes */
+  padding: 8px 16px; /* Espaciado interno */
+  text-decoration: none; /* No subrayado para los enlaces */
+  border-radius: 4px; /* Bordes redondeados para los botones/enlaces */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para botones/enlaces */
 }
 
 button:hover, .card-footer a:hover {
