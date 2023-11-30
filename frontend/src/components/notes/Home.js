@@ -72,7 +72,7 @@ export default function Home() {
       <div className="card-footer">
         {note.name}
         {/* Aquí se añade el botón que llama a toggleLike cuando se hace clic */}
-        <button className="like-button" onClick={() => toggleLike(note._id)}>
+        <button className="like-button" onClick={() => likeNote(note._id)}>
           👍 {note.likes}
         </button>
       </div>
