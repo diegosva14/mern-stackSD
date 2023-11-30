@@ -11,12 +11,13 @@ const noteCtrl = {
     },*/
     getNotes: async (req, res) => {
         try {
-          const notes = await Notes.find({}); // Removed the filter by user_id
+          const notes = await Notes.find({}).sort({ createdAt: -1 }); // Ordena por el campo 'createdAt' de manera descendente
           res.json(notes)
         } catch (err) {
           return res.status(500).json({msg: err.message});
         }
       },
+      
       
     createNote: async(req, res) =>{
         try {
