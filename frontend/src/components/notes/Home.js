@@ -45,7 +45,7 @@ export default function Home() {
             </div>
             <p>{note.content}</p>
             <div className="note-footer">
-              <span>{formatDate(note.createdAt)}</span>
+              <span>{format(note.createdAt)}</span>
               <Link to={`edit/${note._id}`} >Edit</Link>
             </div>
           </div>
