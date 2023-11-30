@@ -52,14 +52,15 @@ function App() {
       const token = localStorage.getItem('tokenStore');
       if (token) {
         try {
+          // Verificar el token
           const verified = await axios.get('/users/verify', {
             headers: { Authorization: token }
           });
-          console.log(verified);
+
           if (verified.data) {
             setIsLogin(true);
-            // Suponiendo que tienes un endpoint que devuelve los datos del usuario
-            const userRes = await axios.get('/users/userInfo', {
+            // Obtener la información del usuario autenticado
+            const userRes = await axios.get('/users/username', { // Asegúrate de que esta ruta coincida con tu backend
               headers: { Authorization: token }
             });
             setUserInfo(userRes.data); // Actualizar el estado con los datos del usuario
@@ -80,7 +81,7 @@ function App() {
 
   return (
     <div className="App">
-      {isLogin && userInfo ? ( // Verificar que isLogin y userInfo son verdaderos
+      {isLogin ? (
         <Notes setIsLogin={setIsLogin} userInfo={userInfo} />
       ) : (
         <Login setIsLogin={setIsLogin} />
