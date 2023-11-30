@@ -18,7 +18,7 @@ const noteSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    comments: [commentSchema],
+    
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     name:{
         type: String,
@@ -28,20 +28,5 @@ const noteSchema = new mongoose.Schema({
     timestamps: true
 })
 
-const commentSchema = new mongoose.Schema({
-    text: {
-      type: String,
-      required: true,
-    },
-    author: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
-    authorName: {
-      type: String,
-      required: true,
-    }
-  });
-  module.exports = mongoose.model('Comments', commentSchema)
+
 module.exports = mongoose.model('Notes', noteSchema)
