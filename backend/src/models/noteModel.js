@@ -18,7 +18,10 @@ const noteSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    likes: { 
+        type: Number, 
+        default: 1 
+    },
     name:{
         type: String,
         required: true

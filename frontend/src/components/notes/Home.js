@@ -37,18 +37,18 @@ export default function Home() {
 
     const toggleLike = async (noteId) => {
         try {
-          // Llamada al endpoint para likear una nota
+          // Llamada al endpoint para incrementar el contador de likes
           const response = await axios.put(`/api/notes/${noteId}/like`);
-          // Actualiza el estado de las notas con la nueva información
+          // Actualiza el estado de las notas con el nuevo conteo de likes
           setNotes(notes.map(note => {
             if (note._id === noteId) {
-              return { ...note, likes: response.data.likes };
+              return { ...note, likes: response.data };
             }
             return note;
           }));
         } catch (error) {
-          console.error('Error al likear la nota', error);
-          // Manejo de errores, por ejemplo mostrar un mensaje al usuario
+          console.error('Error al dar like a la nota', error);
+          // Manejo de errores
         }
       };
 
@@ -64,10 +64,7 @@ export default function Home() {
             <p className="date">{format(note.createdAt)}</p>
             <div className="card-footer">
               {note.name}
-              {/* Botón para likear, muestra el conteo de likes */}
-              <button onClick={() => toggleLike(note._id)}>
-                👍 {note.likes.length} {/* Asumiendo que 'likes' es un arreglo */}
-              </button>
+              <span className="likes-counter">👍 {note.likes}</span>
             </div>
             <button className="close" onClick={() => deleteNote(note._id)}>X</button>
           </div>
