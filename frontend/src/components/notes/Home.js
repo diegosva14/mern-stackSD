@@ -38,7 +38,8 @@ export default function Home() {
     const toggleLike = async (noteId) => {
         try {
           // Llamada al endpoint para incrementar el contador de likes
-          const response = await axios.put(`https://mern-stacksd-backend.onrender.com/api/notes/${noteId}/like`);
+          const response = await axios.put(`https://mern-stacksd-backend.onrender.com/api/notes/${noteId}/like`, {}, config);
+    console.log(response.data); // Muestra la respuesta del servi
           // Actualiza el estado de las notas con el nuevo conteo de likes
           setNotes(notes.map(note => {
             if (note._id === noteId) {
@@ -47,7 +48,8 @@ export default function Home() {
             return note;
           }));
         } catch (error) {
-          console.error('Error al dar like a la nota', error);
+            console.error('Error al dar like a la nota', error);
+            console.log(error.response.data); // Esto mostrará el mensaje de error del servidor
           // Manejo de errores
         }
       };
