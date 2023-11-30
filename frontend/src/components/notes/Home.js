@@ -49,8 +49,8 @@ export default function Home() {
                 // Esto dependerá de cómo estés manejando el estado en tu componente.
                 // Por ejemplo, si tienes un estado que contiene todas las notas, podrías hacer algo así:
                 setNotes(prevNotes => prevNotes.map(note => 
-                    note._id === noteId ? { ...note, likes: note.likes + 1 } : note
-                ));
+                    note._id === noteId ? { ...note, likes: response.data.likes } : note
+                  ));
             }
         } catch (err) {
             console.error('Error al dar like a la nota', err);
@@ -73,7 +73,7 @@ export default function Home() {
         {note.name}
         {/* Aquí se añade el botón que llama a toggleLike cuando se hace clic */}
         <button className="like-button" onClick={() => likeNote(note._id)}>
-          👍 {note.likes}
+          👍 {note.likes.length}
         </button>
       </div>
       <button className="close" onClick={() => deleteNote(note._id)}>X</button>

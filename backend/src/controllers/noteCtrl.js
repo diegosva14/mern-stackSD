@@ -107,13 +107,23 @@ const noteCtrl = {
     likeNote: async (req, res) => {
         try {
           const note = await Notes.findById(req.params.id);
-          note.likes += 1; // Incrementar el contador de likes
-          await note.save();
-          res.json(note.likes); // Devolver solo el número de likes
+          const userId = req.user.id; // Asumiendo que req.user.id contiene el ID del usuario autenticado
+      
+          // Verificar si el usuario ya ha dado like
+          if (note.likes.includes(userId)) {
+            // Usuario ya dio like, no incrementar el contador
+            return res.status(400).json({ msg: 'Ya has dado like a esta nota.' });
+          } else {
+            // Usuario no ha dado like, incrementar el contador y añadir el ID del usuario al arreglo de likes
+            note.likes.push(userId);
+            await note.save();
+            res.json({ likes: note.likes.length }); // Devuelve el conteo actualizado de likes
+          }
         } catch (err) {
           return res.status(500).json({ msg: err.message });
         }
       },
+      
       
 }
 
