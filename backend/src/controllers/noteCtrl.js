@@ -124,7 +124,23 @@ const noteCtrl = {
         }
       },
       
-     
+      addComment: async (req, res) => {
+        try {
+          const note = await Notes.findById(req.params.id);
+          const newComment = {
+            text: req.body.text,
+            author: req.user.id, // Asumiendo que req.user.id contiene el ID del usuario autenticado
+            authorName: req.user.name, // Asumiendo que tienes el nombre del usuario disponible
+          };
+      
+          note.comments.push(newComment);
+          await note.save();
+          res.json(newComment);
+        } catch (err) {
+          return res.status(500).json({ msg: err.message });
+        }
+      },
+      
       
       
       
