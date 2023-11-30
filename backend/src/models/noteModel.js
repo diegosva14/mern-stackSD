@@ -1,5 +1,19 @@
 const mongoose = require('mongoose')
-
+const commentSchema = new mongoose.Schema({
+    text: {
+      type: String,
+      required: true,
+    },
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    authorName: {
+      type: String,
+      required: true,
+    }
+  });
 
 const noteSchema = new mongoose.Schema({
     title:{
@@ -27,20 +41,6 @@ const noteSchema = new mongoose.Schema({
 },{
     timestamps: true
 })
-const commentSchema = new mongoose.Schema({
-    text: {
-      type: String,
-      required: true,
-    },
-    author: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
-    authorName: {
-      type: String,
-      required: true,
-    }
-  });
+
   module.exports = mongoose.model('Comments', commentSchema)
 module.exports = mongoose.model('Notes', noteSchema)
