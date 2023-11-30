@@ -35,27 +35,43 @@ export default function Home() {
         }
     }
 
+    const toggleLike = async (noteId) => {
+        try {
+          // Llamada al endpoint para likear una nota
+          const response = await axios.put(`/api/notes/${noteId}/like`);
+          // Actualiza el estado de las notas con la nueva información
+          setNotes(notes.map(note => {
+            if (note._id === noteId) {
+              return { ...note, likes: response.data.likes };
+            }
+            return note;
+          }));
+        } catch (error) {
+          console.error('Error al likear la nota', error);
+          // Manejo de errores, por ejemplo mostrar un mensaje al usuario
+        }
+      };
+
     return (
        
         <div className="note-wrapper">
-            {
-                notes.map(note =>(
-                    <div className="card" key={note._id}>
-                        <h4 title={note.title}>{note.title}</h4>
-                        <div className="text-wrapper">
-                            <p>{note.content}</p>
-                        </div>
-                        <p className="date">{format(note.createdAt)}</p>
-                        <div className="card-footer">
-                            {note.name}
-                            <Link to={`edit/${note._id}`} >Edit</Link>
-                        </div>
-                        <button className="close" 
-                        onClick={() => deleteNote(note._id)} >X</button>
-                    </div>
-                ))
-            }
-            
-        </div>
+        {notes.map(note => (
+          <div className="card" key={note._id}>
+            <h4 title={note.title}>{note.title}</h4>
+            <div className="text-wrapper">
+              <p>{note.content}</p>
+            </div>
+            <p className="date">{format(note.createdAt)}</p>
+            <div className="card-footer">
+              {note.name}
+              {/* Botón para likear, muestra el conteo de likes */}
+              <button onClick={() => toggleLike(note._id)}>
+                👍 {note.likes.length} {/* Asumiendo que 'likes' es un arreglo */}
+              </button>
+            </div>
+            <button className="close" onClick={() => deleteNote(note._id)}>X</button>
+          </div>
+        ))}
+      </div>
     )
 }
