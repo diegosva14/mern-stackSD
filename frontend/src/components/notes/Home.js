@@ -109,7 +109,7 @@ export default function Home() {
 
     return (
        
-    <div className="card note-wrapper">
+    <div className="note-wrapper">
   {notes.map(note => (
     <div className="card" key={note._id}>
       <h4 title={note.title}>{note.title}</h4>
