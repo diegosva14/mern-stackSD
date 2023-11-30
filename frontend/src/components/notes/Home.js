@@ -36,25 +36,20 @@ export default function Home() {
     }
 
     return (
-        <div className="note-wrapper">
-            {
-                notes.map(note =>(
-                    <div className="card" key={note._id}>
-                        <h4 title={note.title}>{note.title}</h4>
-                        <div className="text-wrapper">
-                            <p>{note.content}</p>
-                        </div>
-                        <p className="date">{format(note.createdAt)}</p>
-                        <div className="card-footer">
-                            {note.name}
-                            <Link to={`edit/${note._id}`} >Edit</Link>
-                        </div>
-                        <button className="close" 
-                        onClick={() => deleteNote(note._id)} >X</button>
-                    </div>
-                ))
-            }
-            
+        <div className="container">
+    {notes.map(note => (
+      <div className="note-card" key={note._id}>
+        <div className="note-header">
+          <h2>{note.name} - {note.title}</h2>
+          <button onClick={() => deleteNote(note._id)}>X</button>
         </div>
+        <p>{note.content}</p>
+        <div className="note-footer">
+          <span>{formatDate(note.createdAt)}</span>
+          <button onClick={() => editNote(note._id)}>Edit</button>
+        </div>
+      </div>
+    ))}
+  </div>
     )
 }
