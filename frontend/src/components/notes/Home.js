@@ -58,32 +58,7 @@ export default function Home() {
         }
       };
       
-      const submitComment = async (e, noteId) => {
-        e.preventDefault();
-        const commentText = e.target[0].value; // Obtén el valor del input del formulario
-        try {
-          const token = localStorage.getItem('tokenStore');
-          if (token) {
-            const response = await axios.post(`/api/notes/${noteId}/comments`, { text: commentText }, {
-              headers: { Authorization: token }
-            });
-      
-            // Actualizar el estado con el nuevo comentario
-            setNotes(notes.map(note => {
-              if (note._id === noteId) {
-                return { ...note, comments: [...note.comments, response.data] };
-              }
-              return note;
-            }));
-      
-            e.target[0].value = ''; // Limpiar el input del comentario
-          }
-        } catch (err) {
-          console.error('Error al enviar el comentario', err);
-          // Manejo de errores adecuado aquí
-        }
-      };
-      
+    
 
     return (
        
@@ -103,17 +78,7 @@ export default function Home() {
         </button>
       </div>
       <button className="close" onClick={() => deleteNote(note._id)}>X</button>
-      <div className="comments-section">
-        {note.comments.map(comment => (
-          <div key={comment._id} className="comment">
-            <strong>{comment.authorName}</strong>: {comment.text}
-          </div>
-        ))}
-      </div>
-      <form onSubmit={e => submitComment(e, note._id)}>
-        <input type="text" placeholder="Escribe un comentario..." />
-        <button type="submit">Comentar</button>
-      </form>
+      
     </div>
   ))}
 </div>
