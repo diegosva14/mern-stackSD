@@ -70,6 +70,17 @@ a{
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+.card{
+  width: 600px;
+  box-shadow: 0 0 5px rgb(7,25,63);
+  background: rgb(7,25,63);
+  padding: 10px;
+  position: relative;
+  color: #ddd;
+  margin: 15px;
+  cursor: pointer;
+}
+
 /* Estilo del título de la nota */
 .note-title {
   margin: 0;
@@ -114,7 +125,7 @@ a{
 }
 
 /* Estilo del botón Cerrar */
-.close {
+.card .close {
   background-color: #f44336;
   border: none;
   color: white;
@@ -127,9 +138,7 @@ a{
   cursor: pointer;
   border-radius: 5px;
 
-  position: absolute;
-  top:0;
-  right: 10px;
+
   
 }
 
