@@ -135,7 +135,7 @@ export default function Home() {
   </div>
   <form onSubmit={(e) => submitComment(e, note._id)}>
   <input name="commentText" type="text" placeholder="Escribe un comentario..." required />
-    <button type="submit">Comentar</button>
+    <button name="comment-button"type="submit">Comentar</button>
   </form>
     </div>
   ))}

@@ -67,7 +67,7 @@ a{
   margin: auto;
 }
 .card{
-  width: 600px;
+  width: 300px;
   box-shadow: 0 0 5px rgb(7,25,63);
   background: rgb(7,25,63);
   padding: 10px;
@@ -117,7 +117,42 @@ a{
   letter-spacing: 2px;
   font-size: 12px;
 }
+/* Estilo de la sección de comentarios */
+.comments-section {
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+}
 
+/* Estilo de cada comentario */
+.comment {
+  color: #999;
+  margin-bottom: 5px;
+}
+
+/* Estilo para el input de comentario */
+.comment-input {
+  width: calc(100% - 40px);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: none;
+}
+
+/* Estilo del botón Comentar */
+.comment-button {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
 /* ******* Create Note******************* */
 .create-note{
   max-width: 500px;
