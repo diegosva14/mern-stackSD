@@ -73,7 +73,7 @@ export default function Home() {
         {note.name}
         {/* Aquí se añade el botón que llama a toggleLike cuando se hace clic */}
         <button className="like-button" onClick={() => likeNote(note._id)}>
-          👍 {note.likes?.length || 0}
+          👍 {note.likes}
         </button>
       </div>
       <button className="close" onClick={() => deleteNote(note._id)}>X</button>
