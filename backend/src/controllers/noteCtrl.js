@@ -109,20 +109,21 @@ const noteCtrl = {
           const note = await Notes.findById(req.params.id);
           const userId = req.user.id; // Asumiendo que req.user.id contiene el ID del usuario autenticado
       
-          // Verificar si el usuario ya ha dado like
-          if (note.likes.includes(userId)) {
-            // Usuario ya dio like, no incrementar el contador
-            return res.status(400).json({ msg: 'Ya has dado like a esta nota.' });
+          const index = note.likes.indexOf(userId);
+          if (index > -1) {
+            // Usuario ya dio like, quitar el like
+            note.likes.splice(index, 1);
           } else {
             // Usuario no ha dado like, añadir el ID del usuario al arreglo de likes
             note.likes.push(userId);
-            await note.save();
-            res.json({ likes: note.likes.length }); // Devuelve el conteo actualizado de likes
           }
+          await note.save();
+          res.json({ likes: note.likes.length }); // Devuelve el conteo actualizado de likes
         } catch (err) {
           return res.status(500).json({ msg: err.message });
         }
       },
+      
       
       
       
