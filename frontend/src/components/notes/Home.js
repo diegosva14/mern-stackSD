@@ -61,8 +61,17 @@ export default function Home() {
       
       const submitComment = async (e, noteId) => {
         e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+          // Añade una declaración de consola para asegurarte de que e.target es el formulario
+  console.log(e.target);
+
+  // Añade otra declaración de consola para verificar el elemento input específico
+  console.log(e.target.elements.commentText);
+
+  
+  
+ 
         const commentText = e.target.elements.commentText.value; // Obtener el valor del campo de texto del comentario
-      
+        console.log(commentText); // Esto debería mostrar el texto del comentario
         try {
           const token = localStorage.getItem('tokenStore'); // Obtener el token de autenticación
           if (token) {
@@ -126,7 +135,7 @@ export default function Home() {
     ))}
   </div>
   <form onSubmit={(e) => submitComment(e, note._id)}>
-    <input name="commentInput" type="text" placeholder="Escribe un comentario..." />
+  <input name="commentText" type="text" placeholder="Escribe un comentario..." required />
     <button type="submit">Comentar</button>
   </form>
     </div>
