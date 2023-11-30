@@ -6,6 +6,7 @@ import Notes from './components/Notes'
 
 function App() {
   const [isLogin, setIsLogin] = useState(false)
+  
 
   useEffect(() =>{
     const checkLogin = async () =>{
@@ -28,7 +29,7 @@ function App() {
     <div className="App">
       {
         isLogin 
-        ? <Notes setIsLogin={setIsLogin} /> 
+        ? <Notes setIsLogin={setIsLogin} userInfo={userInfo} /> 
         : <Login setIsLogin={setIsLogin} />
       }
     </div>
