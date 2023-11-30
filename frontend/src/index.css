@@ -17,7 +17,6 @@ code {
 body{
   background: #2c3e50;
 }
-
 .notes-page{
   width: 100%;
   min-height: 100vh;
@@ -57,7 +56,7 @@ a{
 .notes-page section{
   width: 100%;
   box-shadow: 0 0 5px rgb(7,25,63);
-  padding: 40px;
+  padding: 20px 0;
 }
 .note-wrapper{
   max-width: 1920px;
@@ -153,6 +152,7 @@ a{
   cursor: pointer;
   border-radius: 5px;
 }
+
 /* ******* Create Note******************* */
 .create-note{
   max-width: 500px;
