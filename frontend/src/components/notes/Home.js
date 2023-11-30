@@ -60,36 +60,44 @@ export default function Home() {
       };
       
       const submitComment = async (e, noteId) => {
-        e.preventDefault();
-        const commentText = e.target.elements.commentInput.value; // Obtén el valor del input del formulario
+        e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+        const commentText = e.target.elements.commentText.value; // Obtener el valor del campo de texto del comentario
+      
         try {
-          const token = localStorage.getItem('tokenStore');
+          const token = localStorage.getItem('tokenStore'); // Obtener el token de autenticación
           if (token) {
-            const response = await axios.post(`https://mern-stacksd-backend.onrender.com/api/notes/api/notes/${noteId}/comments`, { text: commentText }, {
-              headers: { Authorization: token }
+            // Crear el objeto de comentario
+            const comment = {
+              text: commentText, // El texto del comentario
+            };
+      
+            // Enviar el comentario al backend
+            const response = await axios.post(`/api/notes/${noteId}/comments`, comment, {
+              headers: { Authorization: `Bearer ${token}` }
             });
       
-            // Actualizar el estado con el nuevo comentario
-            setNotes(notes.map(note => {
+            // Actualizar el estado de la aplicación con el nuevo comentario
+            // Asumiendo que tienes un estado llamado 'notes' que es un array con todas las notas
+            setNotes(prevNotes => prevNotes.map(note => {
               if (note._id === noteId) {
-                return { ...note, comments: [...note.comments, response.data] };
+                // Añadir el nuevo comentario a la lista de comentarios de la nota
+                return {
+                  ...note,
+                  comments: [...note.comments, response.data]
+                };
               }
               return note;
             }));
-            const newComment = {
-                text: commentText,
-                authorName: "NombreUsuario", // Reemplaza con el nombre de usuario real desde el estado o props
-              };
-              
-              setComments([...comments, newComment]);
-              e.target.elements.commentInput.value = '';
-            e.target[0].value = ''; // Limpiar el input del comentario
+      
+            // Limpiar el campo del formulario
+            e.target.elements.commentText.value = '';
           }
-        } catch (err) {
-          console.error('Error al enviar el comentario', err);
-          // Manejo de errores adecuado aquí
+        } catch (error) {
+          console.error('Error al enviar el comentario', error);
+          // Manejar los errores aquí, como mostrar un mensaje al usuario
         }
       };
+      
       
 
     return (
