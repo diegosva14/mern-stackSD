@@ -41,7 +41,7 @@ export default function Home() {
             if (token) {
                 // Suponiendo que tu endpoint solo necesita saber qué nota "likear"
                 // y que se encarga de incrementar el número de "likes" internamente.
-                await axios.put(`https://mern-stacksd-backend.onrender.com/api/notes/${noteId}/like`, {}, {
+               const response = await axios.put(`https://mern-stacksd-backend.onrender.com/api/notes/${noteId}/like`, {}, {
                     headers: { Authorization: token }
                 });
     
@@ -49,7 +49,7 @@ export default function Home() {
                 // Esto dependerá de cómo estés manejando el estado en tu componente.
                 // Por ejemplo, si tienes un estado que contiene todas las notas, podrías hacer algo así:
                 setNotes(prevNotes => prevNotes.map(note => 
-                    note._id === noteId ? { ...note, likes: note.likes } : note
+                    note._id === noteId ? { ...note, likes: response.data.likes } : note
                   ));
             }
         } catch (err) {
