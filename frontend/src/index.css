@@ -57,13 +57,14 @@ a{
 .notes-page section{
   width: 100%;
   box-shadow: 0 0 5px rgb(7,25,63);
-  padding: 20px 0;
+  padding: 40px;
 }
 /* Estilo del contenedor de la nota */
 .note-wrapper {
   background-color: #1e1e1e;
   color: #fff;
-  margin: 20px;
+  margin: 20px auto;
+  display: block;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
