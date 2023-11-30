@@ -11,7 +11,7 @@ export default function UserProfile() {
       try {
         const token = localStorage.getItem('tokenStore');
         if (token) {
-          const response = await axios.get('https://mern-stacksd-backend.onrender.com/user/profile', {
+          const response = await axios.get('https://mern-stacksd-backend.onrender.com/users/profile', {
             headers: { Authorization: token }
           });
           setUserProfile(response.data);
