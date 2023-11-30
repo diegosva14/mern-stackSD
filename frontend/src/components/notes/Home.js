@@ -49,7 +49,7 @@ export default function Home() {
                 // Esto dependerá de cómo estés manejando el estado en tu componente.
                 // Por ejemplo, si tienes un estado que contiene todas las notas, podrías hacer algo así:
                 setNotes(prevNotes => prevNotes.map(note => 
-                    note._id === noteId ? { ...note, likes: response.data.likes } : note
+                    note._id === noteId ? { ...note, likes: note.likes } : note
                   ));
             }
         } catch (err) {
