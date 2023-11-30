@@ -109,7 +109,7 @@ export default function Home() {
 
     return (
        
-    <div className="note-wrapper">
+    <div className="card note-wrapper">
   {notes.map(note => (
     <div className="card" key={note._id}>
       <h4 title={note.title}>{note.title}</h4>
@@ -127,9 +127,9 @@ export default function Home() {
       <button className="close" onClick={() => deleteNote(note._id)}>X</button>
       <div className="comments-section">
       {note.comments.map((comment, index) => (
-  <div key={comment._id} className="comment">
-    {comment.authorName}: {comment.text || 'Sin texto'}
-  </div>
+      <div key={comment._id} className="comment">
+      {comment.authorName}: {comment.text || 'Sin texto'}
+   </div>
 ))}
 
   </div>

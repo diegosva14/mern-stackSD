@@ -91,11 +91,7 @@ export default function CreateNote() {
                     name="content" required rows="10" onChange={onChangeInput} />
                 </div>
 
-                <label htmlFor="date">Date: {note.date} </label>
-                <div className="row">
-                    <input type="date" id="date"
-                    name="date" onChange={onChangeInput} />
-                </div>
+               
 
                 <button type="submit">Save</button>
             </form>
