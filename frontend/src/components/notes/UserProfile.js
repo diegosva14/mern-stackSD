@@ -1,13 +1,40 @@
 // UserProfile.js
-import React from 'react';
 
-export default function UserProfile({ userInfo }) {
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+export default function UserProfile() {
+  const [userProfile, setUserProfile] = useState(null);
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const token = localStorage.getItem('tokenStore');
+        if (token) {
+          const response = await axios.get('/user/profile', {
+            headers: { Authorization: token }
+          });
+          setUserProfile(response.data);
+        }
+      } catch (error) {
+        console.error('Error fetching user profile', error);
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
+
+  if (!userProfile) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="user-profile">
-      <img src={userInfo.profilePicture} alt={`${userInfo.username}'s profile`} />
-      <h1>{userInfo.username}</h1>
-      <p>{userInfo.bio}</p>
-      {/* Formulario para cambiar la foto y la biografía si es necesario */}
+      <img src={userProfile.profilePicture} alt="Profile" />
+      <h1>{userProfile.username}</h1>
+      <p>{userProfile.bio}</p>
+      {/* Añade aquí la lógica para cambiar la foto y la biografía si es necesario */}
     </div>
   );
 }
+

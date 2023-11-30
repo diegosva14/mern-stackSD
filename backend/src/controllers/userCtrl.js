@@ -56,7 +56,19 @@ const userCtrl = {
             return res.status(500).json({msg: err.message})
         }
     } ,
-   
+    getUserProfile: async (req, res) => {
+        try {
+          // Aquí asumimos que el ID del usuario se guarda en req.userId mediante el middleware de autenticación
+          const user = await User.findById(req.userId).select('-password');
+          if (!user) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+          }
+          res.json(user);
+        } catch (error) {
+          res.status(500).json({ message: error.message });
+        }
+      }
+      
 }
 
 
