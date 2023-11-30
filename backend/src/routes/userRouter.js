@@ -10,4 +10,10 @@ router.post('/login', userCtrl.loginUser)
 // verify Token
 router.get('/verify', userCtrl.verifiedToken)
 
+// Ruta para actualizar la biografía del usuario
+router.put('/bio', auth, userCtrl.updateBio);
+
+// Ruta para actualizar la foto de perfil del usuario
+router.put('/profile-picture', auth, userCtrl.updateProfilePicture);
+
 module.exports = router
