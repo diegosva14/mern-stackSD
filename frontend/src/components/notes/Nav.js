@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-export default function Nav({setIsLogin, userInfo}) {
+export default function Nav({setIsLogin}) {
 
     const logoutSubmit = () =>{
         localStorage.clear()
@@ -16,7 +16,7 @@ export default function Nav({setIsLogin, userInfo}) {
             <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/create">ADD POST</Link></li>
-               userInfo && <li><Link to={`/profile/${userInfo.username}`}>Perfil</Link></li>
+    
                 <li onClick={logoutSubmit}><Link to="/">Logout</Link></li>
             </ul>
         </header>  
