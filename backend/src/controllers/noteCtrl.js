@@ -114,7 +114,7 @@ const noteCtrl = {
             // Usuario ya dio like, no incrementar el contador
             return res.status(400).json({ msg: 'Ya has dado like a esta nota.' });
           } else {
-            // Usuario no ha dado like, incrementar el contador y añadir el ID del usuario al arreglo de likes
+            // Usuario no ha dado like, añadir el ID del usuario al arreglo de likes
             note.likes.push(userId);
             await note.save();
             res.json({ likes: note.likes.length }); // Devuelve el conteo actualizado de likes
@@ -123,6 +123,8 @@ const noteCtrl = {
           return res.status(500).json({ msg: err.message });
         }
       },
+      
+      
       
       
 }

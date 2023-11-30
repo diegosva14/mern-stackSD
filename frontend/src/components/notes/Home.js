@@ -37,26 +37,27 @@ export default function Home() {
 
     const likeNote = async (noteId) => {
         try {
-            const token = localStorage.getItem('tokenStore');
-            if (token) {
-                // Suponiendo que tu endpoint solo necesita saber qué nota "likear"
-                // y que se encarga de incrementar el número de "likes" internamente.
-                await axios.put(`https://mern-stacksd-backend.onrender.com/api/notes/${noteId}/like`, {}, {
-                    headers: { Authorization: token }
-                });
-    
-                // Aquí deberías actualizar el estado para reflejar el cambio en la interfaz de usuario.
-                // Esto dependerá de cómo estés manejando el estado en tu componente.
-                // Por ejemplo, si tienes un estado que contiene todas las notas, podrías hacer algo así:
-                setNotes(prevNotes => prevNotes.map(note => 
-                    note._id === noteId ? { ...note, likes: note.likes } : note
-                  ));
-            }
+          const token = localStorage.getItem('tokenStore');
+          if (token) {
+            const response = await axios.put(`https://mern-stacksd-backend.onrender.com/api/notes/${noteId}/like`, {}, {
+              headers: { Authorization: token }
+            });
+      
+            // Actualiza el estado de las notas
+            setNotes(notes.map(note => {
+              if (note._id === noteId) {
+                // Asumiendo que el backend devuelve el nuevo conteo de likes
+                return { ...note, likes: response.data.likes };
+              }
+              return note;
+            }));
+          }
         } catch (err) {
-            console.error('Error al dar like a la nota', err);
-            // Aquí deberías manejar el error, por ejemplo, mostrando un mensaje al usuario.
+          console.error('Error al dar like a la nota', err);
+          // Manejo de errores adecuado aquí
         }
-    }
+      };
+      
     
 
     return (
