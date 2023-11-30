@@ -59,7 +59,9 @@ a{
   box-shadow: 0 0 5px rgb(7,25,63);
   padding: 40px;
 }
+
 /* Estilo del contenedor de la nota */
+/*
 .note-wrapper {
   background-color: #1e1e1e;
   color: #fff;
@@ -70,12 +72,12 @@ a{
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 .card {
-  background-color: #1e1e1e; /* Color de fondo para todas las tarjetas */
-  color: #fff; /* Color de texto para todas las tarjetas */
-  margin-bottom: 20px; /* Espacio entre tarjetas */
-  padding: 20px; /* Espaciado interno para todas las tarjetas */
-  border-radius: 5px; /* Bordes redondeados para todas las tarjetas */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para todas las tarjetas */
+  background-color: #1e1e1e; /* Color de fondo para todas las tarjetas 
+  color: #fff; /* Color de texto para todas las tarjetas 
+  margin-bottom: 20px; /* Espacio entre tarjetas 
+  padding: 20px; /* Espaciado interno para todas las tarjetas 
+  border-radius: 5px; /* Bordes redondeados para todas las tarjetas 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para todas las tarjetas 
 }
 /*
 .card{
@@ -186,7 +188,7 @@ a{
   cursor: pointer;
   border-radius: 5px;
 }
-
+*/
 /*
 .note-wrapper{
   max-width: 1920px;
