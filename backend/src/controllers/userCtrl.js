@@ -56,40 +56,7 @@ const userCtrl = {
             return res.status(500).json({msg: err.message})
         }
     } ,
-    updateBio : async (req, res) => {
-        try {
-          const { bio } = req.body;
-          // Actualizar la biografía del usuario autenticado
-          const updatedUser = await User.findByIdAndUpdate(req.user._id, { bio }, { new: true });
-          res.json({ message: "Biografía actualizada", updatedUser });
-        } catch (error) {
-          res.status(500).json({ message: error.message });
-        }
-      },
-      updateProfilePicture : async (req, res) => {
-        try {
-          // El proceso para la foto de perfil dependerá de si estás recibiendo un archivo o una URL
-          // Si estás subiendo un archivo de imagen, necesitarás una librería como multer para manejar la subida
-          const { imageUrl } = req.body; // Asumiendo que estás enviando una URL
-          const updatedUser = await User.findByIdAndUpdate(req.user._id, { profilePicture: imageUrl }, { new: true });
-          res.json({ message: "Foto de perfil actualizada", updatedUser });
-        } catch (error) {
-          res.status(500).json({ message: error.message });
-        }
-      },
-      getUserByUsername : async (req, res) => {
-        try {
-            // Encuentra el usuario por username. Asegúrate de que el modelo de usuario tiene un campo 'username'.
-            const user = await Users.findOne({ username: req.params.username }).select('-password');
-            if (!user) {
-                return res.status(404).json({ msg: 'Usuario no encontrado' });
-            }
-            res.json(user);
-        } catch (error) {
-            console.error(error);
-            res.status(500).send('Error en el servidor');
-        }
-    }
+   
 }
 
 
