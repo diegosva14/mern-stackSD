@@ -145,7 +145,7 @@ const deleteNote = async (id) => {
     return (
     
     <div className="note-wrapper">
-      <div><select onChange={(e) => handleSortChange(e.target.value)} value={sortOrder}>
+      <div> <h3>Ordenar Notas</h3><select onChange={(e) => handleSortChange(e.target.value)} value={sortOrder}>
                 <option value="newest">Más nuevo primero</option>
                 <option value="mostLiked">Más likes primero</option>
             </select></div>
@@ -167,6 +167,7 @@ const deleteNote = async (id) => {
       </div>
       <button className="close" onClick={() => deleteNote(note._id)}>X</button>
       <div className="comments-section">
+      <h3>Comentarios</h3>
       {note.comments.map((comment, index) => (
       <div key={comment._id} className="comment">
       {comment.authorName}: {comment.text || 'Sin texto'}
