@@ -22,7 +22,7 @@ export default function Home() {
             getNotes(token)
         }
     }, [])
-
+/*
     const deleteNote = async (id) =>{
         try {
             if(token){
@@ -35,6 +35,31 @@ export default function Home() {
             window.location.href = "/";
         }
     }
+*/
+const deleteNote = async (id) => {
+  try {
+    if (token) {
+      const response = await axios.delete(`https://mern-stacksd-backend.onrender.com/api/notes/${id}`, {
+        headers: { Authorization: token }
+      });
+      if (response.status === 200) {
+        // Nota eliminada correctamente
+        getNotes(token);
+      } else {
+        // Manejar otros códigos de respuesta
+        console.log(response.data.message);
+      }
+    }
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      // Manejar error de autenticación
+      console.error('Sesión no válida, por favor inicia sesión de nuevo');
+    } else {
+      // Otros errores
+      console.error('Error al eliminar la nota', error);
+    }
+  }
+}
 
     const likeNote = async (noteId) => {
         try {
