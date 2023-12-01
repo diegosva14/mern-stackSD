@@ -143,13 +143,14 @@ const deleteNote = async (id) => {
       
 
     return (
-       
+    
     <div className="note-wrapper">
-      <select onChange={(e) => handleSortChange(e.target.value)} value={sortOrder}>
+      <div><select onChange={(e) => handleSortChange(e.target.value)} value={sortOrder}>
                 <option value="newest">Más nuevo primero</option>
                 <option value="mostLiked">Más likes primero</option>
-            </select>
+            </select></div>
   {notes.map(note => (
+    
     <div className="card" key={note._id}>
       {note.name}
       <h4 title={note.title}>{note.title}</h4>
