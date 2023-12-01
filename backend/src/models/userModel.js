@@ -14,20 +14,13 @@ const userSchema = new mongoose.Schema({
         //trim: true,
         match: [/.+\@.+\..+/, 'Please fill a valid email address'],
         lowercase: true,
-        // Aquí podrías añadir validación de email con una expresión regular.
+        
       },
     password: {
         type: String,
         required: true
     },
-    bio: {
-        type: String,
-        default: 'default bio',
-      },
-    profilePicture: {
-        type: String,
-        default: '../assets/profile-pic.png'
-      }
+
 }, {
     timestamps: true
 })

@@ -1,15 +1,7 @@
 const Notes = require('../models/noteModel')
 
 const noteCtrl = {
-    /*
-    getNotes: async (req, res) => {
-        try {
-          const notes = await Notes.find({}).sort({ createdAt: -1 }); // Ordena por el campo 'createdAt' de manera descendente
-          res.json(notes)
-        } catch (err) {
-          return res.status(500).json({msg: err.message});
-        }
-      },*/
+
       getNotes: async (req, res) => {
         try {
             let sortCriteria = {};
@@ -41,21 +33,7 @@ const noteCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
-  /*  deleteNote: async (req, res) => {
-      try {
-        const note = await Notes.findById(req.params.id);
-        // Verificar si el usuario autenticado es el autor de la nota
-        if (note.user_id.equals(req.user.id)) {
-          await note.remove();
-          res.json({ message: 'Nota eliminada con éxito' });
-        } else {
-          res.status(401).json({ message: 'Acción no autorizada' });
-        }
-      } catch (err) {
-        res.status(500).json({ message: err.message });
-      }
-    },*/
-    
+
     deleteNote: async(req, res) =>{
         try {
             await Notes.findByIdAndDelete(req.params.id)
@@ -64,19 +42,7 @@ const noteCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
-    /*updateNote: async(req, res) =>{
-        try {
-            const {title, content, date} = req.body;
-            await Notes.findOneAndUpdate({_id: req.params.id},{
-                title,
-                content,
-                date
-            })
-            res.json({msg: "Updated a Note"})
-        } catch (err) {
-            return res.status(500).json({msg: err.message})
-        }
-    },*/
+
     updateNote: async (req, res) => {
         try {
           const { title, content, date } = req.body;
