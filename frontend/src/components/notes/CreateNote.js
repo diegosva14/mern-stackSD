@@ -1,43 +1,48 @@
-import React, {useState} from 'react'
-import axios from 'axios'
-import {useHistory} from 'react-router-dom'
-
+// Importaciones necesarias de React, Axios y react-router-dom.
+import React, {useState} from 'react';
+import axios from 'axios';
+import {useHistory} from 'react-router-dom';
 
 export default function CreateNote() {
+    // Estado para manejar la información de la nota.
     const [note, setNote] = useState({
         title: '',
         content: '',
         date: ''
-    })
-    const history = useHistory()
+    });
+    // useHistory se utiliza para la navegación programática.
+    const history = useHistory();
 
+    // Maneja los cambios en los campos de entrada del formulario.
     const onChangeInput = e => {
         const {name, value} = e.target;
-        setNote({...note, [name]:value})
-    }
+        setNote({...note, [name]:value});
+    };
 
-
+    // Función para manejar el envío del formulario de creación de nota.
     const createNote = async e => {
-        e.preventDefault()
+        e.preventDefault();
         try {
-            const token = localStorage.getItem('tokenStore')
+            const token = localStorage.getItem('tokenStore');
             if(token){
                 const {title, content, date} = note;
-                const newNote = {
-                    title, content, date
-                }
+                const newNote = { title, content, date };
 
+                // Realiza una petición POST para crear una nueva nota.
                 await axios.post('https://mern-stacksd-backend.onrender.com/api/notes', newNote, {
                     headers: {Authorization: token}
-                })
+                });
                 
-                return history.push('/')
+                // Redirecciona al usuario a la página principal después de la creación.
+                return history.push('/');
             }
         } catch (err) {
+            // Redirige al usuario si hay un error.
             window.location.href = "/";
         }
-    }
+    };
 
+    // Función para agregar información de un cóctel a la nota.
     const agregarCoctel = async () => {
         try {
           const apiKey = 'dP7RmCevDceoicjgI+YU2Q==HnojcP8u9Ydzl4vo';
