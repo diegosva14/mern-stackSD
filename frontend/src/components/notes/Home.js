@@ -125,9 +125,7 @@ export default function Home() {
           👍 {note.likes?.length || 0}
         </button>
       </div>
-      {note.user_id === userId && (
       <button className="close" onClick={() => deleteNote(note._id)}>X</button>
-    )}
       <div className="comments-section">
       {note.comments.map((comment, index) => (
       <div key={comment._id} className="comment">
