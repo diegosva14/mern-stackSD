@@ -57,7 +57,7 @@ export default function CreateNote() {
         setNote({
           ...note,
           title: coctelData.name,
-          content: `Ingredients: ${coctelData.ingredients.join(', ')}`,
+          content: `Hola! aqui estan los ingredientes que necesitas para la bebida ${coctelData.name}: ${coctelData.ingredients.join(', ')}`,
         });
       } else {
         console.error('La respuesta de la API de cócteles no tiene el formato esperado.');
@@ -72,7 +72,7 @@ export default function CreateNote() {
     return (
         <div>
     <div className="create-note">
-      <p>¡Agrega un cóctel! Escribe el nombre en el título y haz clic en "Agregar Cóctel".</p>
+      <p>¡Agrega un cóctel! Escribe el nombre del cocten en ingles en el título y haz clic en "Agregar Cóctel".</p>
     </div>
         <div className="create-note">
             <h2>Add Recipe</h2>
