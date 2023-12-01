@@ -1,7 +1,19 @@
 const Users = require('../models/userModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const multer = require('multer');
 
+// Configura multer para la carga de imágenes
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+      cb(null, 'uploads/'); // Asegúrate de que este directorio existe o multer dará error
+    },
+    filename: function(req, file, cb) {
+      cb(null, Date.now() + '-' + file.originalname); // Usamos Date.now() para evitar nombres de archivo duplicados
+    }
+  });
+  
+  const upload = multer({ storage: storage });
 const userCtrl = {
     registerUser: async (req, res) =>{
         try {
@@ -56,9 +68,36 @@ const userCtrl = {
             return res.status(500).json({msg: err.message})
         }
     } ,
-  
+    updateProfile : async (req, res) => {
+        try {
+          // Encuentra el usuario basado en el id del usuario proporcionado por el middleware de autenticación
+          const user = await Users.findById(req.user._id);
       
+          // Si se proporcionó una biografía, actualízala
+          if(req.body.bio) {
+            user.bio = req.body.bio;
+          }
+      
+          // Si se subió una imagen, actualiza la ruta de la imagen de perfil
+          // Asegúrate de tener el nombre del campo del formulario para la imagen de perfil igual al argumento pasado a .single()
+          if(req.file) {
+            user.profilePicture = req.file.path;
+          }
+      
+          // Guarda el usuario actualizado
+          await user.save();
+      
+          // Envía una respuesta exitosa con el usuario actualizado
+          res.status(200).json(user);
+        } catch (error) {
+          // Si hay un error, envía una respuesta de error
+          res.status(500).json({ message: error.message });
+        }
+  
+    }
 }
+
+
 
 
 module.exports = userCtrl

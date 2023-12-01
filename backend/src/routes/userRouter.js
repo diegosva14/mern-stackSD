@@ -10,6 +10,7 @@ router.post('/login', userCtrl.loginUser)
 // verify Token
 router.get('/verify', userCtrl.verifiedToken)
 
+router.post('/profile', auth, upload.single('profilePicture'), userCtrl.updateProfile);
 
 
 
