@@ -35,7 +35,7 @@ const noteCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
-    deleteNote: async (req, res) => {
+  /*  deleteNote: async (req, res) => {
       try {
         const note = await Notes.findById(req.params.id);
         // Verificar si el usuario autenticado es el autor de la nota
@@ -48,8 +48,8 @@ const noteCtrl = {
       } catch (err) {
         res.status(500).json({ message: err.message });
       }
-    },
-    /*
+    },*/
+    
     deleteNote: async(req, res) =>{
         try {
             await Notes.findByIdAndDelete(req.params.id)
@@ -57,7 +57,7 @@ const noteCtrl = {
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
-    },*/
+    },
     /*updateNote: async(req, res) =>{
         try {
             const {title, content, date} = req.body;
