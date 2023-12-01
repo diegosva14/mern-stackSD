@@ -2,20 +2,31 @@ const Notes = require('../models/noteModel')
 
 const noteCtrl = {
 
-      getNotes: async (req, res) => {
-        try {
-            let sortCriteria = {};
-            if (req.query.sort === '-createdAt') {
-                sortCriteria = { createdAt: -1 };
-            } else if (req.query.sort === '-likes') {
-                sortCriteria = { likes: -1 };
-            }
-            const notes = await Notes.find().sort(sortCriteria);
-            res.json(notes);
-        } catch (err) {
-            return res.status(500).json({ msg: err.message });
-        }
-    },
+  getNotes: async (req, res) => {
+    try {
+      let sortCriteria = {};
+      if (req.query.sort === '-createdAt') {
+        sortCriteria = { createdAt: -1 };
+      } else if (req.query.sort === '-likes') {
+        // Aquí se usa una agregación para ordenar por la longitud del arreglo 'likes'
+        sortCriteria = { "likesLength": -1 };
+      }
+  
+      // Agregación para añadir un campo que contenga la longitud del arreglo 'likes'
+      const notes = await Notes.aggregate([
+        {
+          $addFields: {
+            likesLength: { $size: "$likes" }
+          }
+        },
+        { $sort: sortCriteria }
+      ]);
+  
+      res.json(notes);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
       
     createNote: async(req, res) =>{
         try {

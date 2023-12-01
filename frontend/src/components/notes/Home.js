@@ -13,15 +13,17 @@ export default function Home() {
     const getNotes = async (token, sort) => {
       let query = '?sort=';
       if (sort === 'newest') {
-          query += '-createdAt';
+        query += '-createdAt';
       } else if (sort === 'mostLiked') {
-          query += '-likes';
+        query += '-likes';
       }
+    
       const res = await axios.get(`https://mern-stacksd-backend.onrender.com/api/notes${query}`, {
-          headers:{Authorization: token}
+        headers: { Authorization: token }
       });
+    
       setNotes(res.data);
-  };
+    };
 
     useEffect(() =>{
         const token = localStorage.getItem('tokenStore')
