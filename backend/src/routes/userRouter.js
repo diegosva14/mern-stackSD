@@ -24,6 +24,7 @@ router.post('/login', userCtrl.loginUser)
 router.get('/verify', userCtrl.verifiedToken)
 
 router.post('/profile', auth, upload.single('profilePicture'), userCtrl.updateProfile);
+router.get('/profile', auth, userCtrl.getProfile);
 
 
 

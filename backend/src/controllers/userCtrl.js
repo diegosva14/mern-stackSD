@@ -94,6 +94,18 @@ const userCtrl = {
           res.status(500).json({ message: error.message });
         }
   
+    },
+    getProfile : async (req, res) => {
+      try {
+        // Asumiendo que estás usando la autenticación y req.user contiene el ID del usuario
+        const user = await Users.findById(req.user._id).select('-password');
+        if (!user) {
+          return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+        res.json(user);
+      } catch (error) {
+        res.status(500).json({ message: error.message });
+      }
     }
 }
 

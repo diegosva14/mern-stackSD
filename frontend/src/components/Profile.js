@@ -12,7 +12,7 @@ function Profile() {
       // Función para cargar la información actual del usuario
       const loadUserProfile = async () => {
         try {
-          const response = await axios.get('/api/user/profile', {
+          const response = await axios.get('https://mern-stacksd-backend.onrender.com/api/users/profile', {
             headers: {
               // Asegúrate de incluir el token de autorización si es necesario
             }
