@@ -7,7 +7,7 @@ export default function Nav({setIsLogin}) {
         localStorage.clear()
         setIsLogin(false)
     }
-
+//Es el navegador que se muestra en la parte superior de la pagina
     return (
         <header>
             <div className="logo">

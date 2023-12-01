@@ -1,59 +1,46 @@
-import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
-import {format} from 'timeago.js'
-import axios from 'axios'
+// Importaciones necesarias de React, React Router, timeago.js para formatear fechas y axios para solicitudes HTTP.
+import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
+import {format} from 'timeago.js';
+import axios from 'axios';
 
 export default function Home() {
-    const [notes, setNotes] = useState([])
-    const [token, setToken] = useState('')
+    // Estados para manejar las notas, el token de autenticación, los comentarios y el orden de las notas.
+    const [notes, setNotes] = useState([]);
+    const [token, setToken] = useState('');
     const [comments, setComments] = useState([]);
     const [sortOrder, setSortOrder] = useState('newest');
 
-    /*const getNotes = async (token) =>{
-        const res = await axios.get('https://mern-stacksd-backend.onrender.com/api/notes', {
-            headers:{Authorization: token}
-        })
-        setNotes(res.data)
-    }*/
+    // Función para obtener las notas del servidor.
     const getNotes = async (token, sort) => {
-      let query = '?sort=';
-      if (sort === 'newest') {
-          query += '-createdAt';
-      } else if (sort === 'mostLiked') {
-          query += '-likes';
-      }
-      const res = await axios.get(`https://mern-stacksd-backend.onrender.com/api/notes${query}`, {
-          headers:{Authorization: token}
-      });
-      setNotes(res.data);
-  };
-
-    useEffect(() =>{
-        const token = localStorage.getItem('tokenStore')
-        setToken(token)
-        if (token) {
-          getNotes(token, sortOrder);
-      }
-  }, [sortOrder]);
-
-   // Función para manejar el cambio de ordenamiento
-   const handleSortChange = (newSortOrder) => {
-    setSortOrder(newSortOrder);
-};
-/*
-    const deleteNote = async (id) =>{
-        try {
-            if(token){
-                await axios.delete(`https://mern-stacksd-backend.onrender.com/api/notes/${id}`, {
-                    headers: {Authorization: token}
-                })
-                getNotes(token)
-            }
-        } catch (error) {
-            window.location.href = "/";
+        // Construye la consulta en función del orden deseado.
+        let query = '?sort=';
+        if (sort === 'newest') {
+            query += '-createdAt';
+        } else if (sort === 'mostLiked') {
+            query += '-likes';
         }
-    }
-*/
+        // Realiza la petición GET a la API.
+        const res = await axios.get(`https://mern-stacksd-backend.onrender.com/api/notes${query}`, {
+            headers:{Authorization: token}
+        });
+        setNotes(res.data);
+    };
+
+    // Efecto para obtener las notas cuando el componente se monta o el orden cambia.
+    useEffect(() =>{
+        const token = localStorage.getItem('tokenStore');
+        setToken(token);
+        if (token) {
+            getNotes(token, sortOrder);
+        }
+    }, [sortOrder]);
+
+    // Función para manejar el cambio de orden de las notas.
+    const handleSortChange = (newSortOrder) => {
+        setSortOrder(newSortOrder);
+    };
+//Funcion para eliminar una nota
 const deleteNote = async (id) => {
   if (window.confirm("¿Estás seguro de que quieres eliminar esta nota?")) {
       try {
@@ -70,7 +57,7 @@ const deleteNote = async (id) => {
   }
 };
 
-
+//Funcion para dar like a una nota
     const likeNote = async (noteId) => {
         try {
           const token = localStorage.getItem('tokenStore');
@@ -93,7 +80,7 @@ const deleteNote = async (id) => {
           // Manejo de errores adecuado aquí
         }
       };
-      
+      //Funcion para enviar un comentario
       const submitComment = async (e, noteId) => {
         e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
           // Añade una declaración de consola para asegurarte de que e.target es el formulario
@@ -141,7 +128,7 @@ const deleteNote = async (id) => {
       };
       
       
-
+      //RENDERIZACION DE COMPONENTES
     return (
     
     <div className="note-wrapper">
