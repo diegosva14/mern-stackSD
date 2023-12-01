@@ -164,6 +164,7 @@ const deleteNote = async (id) => {
         <button className="like-button" onClick={() => likeNote(note._id)}>
           👍 {note.likes?.length || 0}
         </button>
+        <span className="comment-count">💬 {note.comments.length}</span>
       </div>
       <button className="close" onClick={() => deleteNote(note._id)}>X</button>
       <div className="comments-section">
