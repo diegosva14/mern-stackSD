@@ -51,23 +51,24 @@ const userCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
-    verifiedToken: (req, res) =>{
-        try {
-            const token = req.header("Authorization")
-            if(!token) return res.send(false)
+    verifiedToken: (req, res) => {
+    try {
+        const token = req.header("Authorization");
+        if (!token) return res.status(401).json({ verified: false });
 
-            jwt.verify(token, process.env.TOKEN_SECRET, async (err, verified) =>{
-                if(err) return res.send(false)
+        jwt.verify(token, process.env.TOKEN_SECRET, async (err, verified) => {
+            if (err) return res.status(401).json({ verified: false });
 
-                const user = await Users.findById(verified.id)
-                if(!user) return res.send(false)
+            const user = await Users.findById(verified.id).select('-password');
+            if (!user) return res.status(404).json({ verified: false });
 
-                return res.send(true)
-            })
-        } catch (err) {
-            return res.status(500).json({msg: err.message})
-        }
-    } ,
+            return res.json({ verified: true, id: user._id }); // Devolver el ID del usuario
+        });
+    } catch (err) {
+        return res.status(500).json({msg: err.message});
+    }
+},
+
     updateProfile : async (req, res) => {
         try {
           // Encuentra el usuario basado en el id del usuario proporcionado por el middleware de autenticación
