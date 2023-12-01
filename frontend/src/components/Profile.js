@@ -13,10 +13,11 @@ function Profile() {
     formData.append('bio', biography);
   
     try {
+        const token = localStorage.getItem('tokenStore');
       const response = await axios.post('https://mern-stacksd-backend.onrender.com/api/users/profile', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${tuToken}` // Asegúrate de enviar el token de autenticación
+          'Authorization': `Bearer ${token}` // Asegúrate de enviar el token de autenticación
         }
       });
       console.log(response.data);
