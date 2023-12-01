@@ -32,11 +32,6 @@ const noteSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Users', // Make sure this matches your User model name
-      required: true
-    },
     comments: [commentSchema],
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     name:{
