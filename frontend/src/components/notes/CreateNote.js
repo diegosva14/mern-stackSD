@@ -75,7 +75,7 @@ export default function CreateNote() {
       <p>¡Agrega un cóctel! Escribe el nombre del cocten en ingles en el título y haz clic en "Agregar Cóctel".</p>
     </div>
         <div className="create-note">
-            <h2>Add Recipe</h2>
+            <h2>Add Note</h2>
             <form onSubmit={createNote} autoComplete="off">
                 <div className="row">
                     <label htmlFor="title">Title</label>
