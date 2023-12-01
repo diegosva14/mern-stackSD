@@ -97,12 +97,11 @@ const userCtrl = {
     },
     getProfile : async (req, res) => {
       try {
-        // Asumiendo que estás usando la autenticación y req.user contiene el ID del usuario
-        const user = await Users.findById(req.user._id).select('-password');
+        const user = await Users.findById(req.user.id).select('-password');
         if (!user) {
           return res.status(404).json({ message: 'Usuario no encontrado' });
         }
-        res.json(user);
+        res.json({ profilePicture: user.profilePicture, bio: user.bio });
       } catch (error) {
         res.status(500).json({ message: error.message });
       }
