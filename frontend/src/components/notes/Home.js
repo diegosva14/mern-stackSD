@@ -37,29 +37,21 @@ export default function Home() {
     }
 */
 const deleteNote = async (id) => {
-  try {
-    if (token) {
-      const response = await axios.delete(`https://mern-stacksd-backend.onrender.com/api/notes/${id}`, {
-        headers: { Authorization: token }
-      });
-      if (response.status === 200) {
-        // Nota eliminada correctamente
-        getNotes(token);
-      } else {
-        // Manejar otros códigos de respuesta
-        console.log(response.data.message);
+  if (window.confirm("¿Estás seguro de que quieres eliminar esta nota?")) {
+      try {
+          if (token) {
+              await axios.delete(`https://mern-stacksd-backend.onrender.com/api/notes/${id}`, {
+                  headers: { Authorization: token }
+              });
+              getNotes(token); // Actualizar la lista de notas después de la eliminación
+          }
+      } catch (error) {
+          console.error("Error al eliminar la nota", error);
+          // Aquí puedes manejar el error, como mostrar un mensaje al usuario
       }
-    }
-  } catch (error) {
-    if (error.response && error.response.status === 401) {
-      // Manejar error de autenticación
-      console.error('Sesión no válida, por favor inicia sesión de nuevo');
-    } else {
-      // Otros errores
-      console.error('Error al eliminar la nota', error);
-    }
   }
-}
+};
+
 
     const likeNote = async (noteId) => {
         try {
