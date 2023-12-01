@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+//Modelo para datos de Cmments
 const commentSchema = new mongoose.Schema({
     text: {
       type: String,
@@ -15,6 +16,7 @@ const commentSchema = new mongoose.Schema({
     }
   });
 
+  //Modelo para datos de Notes
 const noteSchema = new mongoose.Schema({
     title:{
         type: String,
