@@ -99,5 +99,5 @@ const userCtrl = {
 
 
 
-
+module.exports = upload;
 module.exports = userCtrl
