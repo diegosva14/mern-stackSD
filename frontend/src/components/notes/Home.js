@@ -6,7 +6,8 @@ import axios from 'axios'
 export default function Home() {
     const [notes, setNotes] = useState([])
     const [token, setToken] = useState('')
-    const [comments, setComments] = useState([]);
+    //const [comments, setComments] = useState([]);
+    const [userId, setUserId] = useState('');
 
     const getNotes = async (token) =>{
         const res = await axios.get('https://mern-stacksd-backend.onrender.com/api/notes', {
@@ -15,13 +16,27 @@ export default function Home() {
         setNotes(res.data)
     }
 
-    useEffect(() =>{
-        const token = localStorage.getItem('tokenStore')
-        setToken(token)
-        if(token){
-            getNotes(token)
-        }
-    }, [])
+    useEffect(() => {
+      const token = localStorage.getItem('tokenStore');
+      setToken(token);
+      if (token) {
+        // Aquí verificas el token y obtienes el ID del usuario
+        const verifyToken = async () => {
+          try {
+            const res = await axios.get('https://mern-stacksd-backend.onrender.com/api/users/verify', {
+              headers: { Authorization: token }
+            });
+            setUserId(res.data.id); // Guarda el ID del usuario
+            getNotes(token);
+          } catch (error) {
+            console.error('Error al verificar el token', error);
+          }
+        };
+  
+        verifyToken();
+      }
+    }, []);
+
 
     const deleteNote = async (id) =>{
         try {
@@ -125,7 +140,9 @@ export default function Home() {
           👍 {note.likes?.length || 0}
         </button>
       </div>
-      <button className="close" onClick={() => deleteNote(note._id)}>X</button>
+      {note.user_id === userId && (
+            <button className="close" onClick={() => deleteNote(note._id)}>X</button>
+          )}
       <div className="comments-section">
       {note.comments.map((comment, index) => (
       <div key={comment._id} className="comment">
