@@ -10,6 +10,7 @@ function Profile() {
   
     useEffect(() => {
       // Función para cargar la información actual del usuario
+      const token = localStorage.getItem('tokenStore');
       const loadUserProfile = async () => {
         try {
           const response = await axios.get('https://mern-stacksd-backend.onrender.com/api/users/profile', {
