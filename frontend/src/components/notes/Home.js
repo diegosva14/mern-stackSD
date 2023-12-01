@@ -171,7 +171,7 @@ const deleteNote = async (id) => {
       <h3>Comentarios</h3>
       {note.comments.map((comment, index) => (
       <div key={comment._id} className="comment">
-      {comment.authorName}: {comment.text || 'Sin texto'}{format(comment.createdAt)}
+      {comment.authorName}: {comment.text || 'Sin texto'}
    </div>
 ))}
 
