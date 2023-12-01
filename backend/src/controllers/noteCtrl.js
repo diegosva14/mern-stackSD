@@ -11,7 +11,10 @@ const noteCtrl = {
     },*/
     getNotes: async (req, res) => {
         try {
-          const notes = await Notes.find({}).sort({ createdAt: -1 }); // Ordena por el campo 'createdAt' de manera descendente
+         // const notes = await Notes.find({}).sort({ createdAt: -1 }); // Ordena por el campo 'createdAt' de manera descendente
+         const notes = await Notes.find()
+        .populate('user', 'username bio profilePicture') // Add this line to populate user data
+        .sort({ createdAt: -1 });
           res.json(notes)
         } catch (err) {
           return res.status(500).json({msg: err.message});
