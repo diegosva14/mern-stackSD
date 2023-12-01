@@ -1,14 +1,7 @@
 const Notes = require('../models/noteModel')
 
 const noteCtrl = {
-    /*getNotes: async (req, res) =>{
-        try {
-            const notes = await Notes.find({user_id: req.user.id})
-            res.json(notes)
-        } catch (err) {
-            return res.status(500).json({msg: err.message})
-        }
-    },*/
+    /*
     getNotes: async (req, res) => {
         try {
           const notes = await Notes.find({}).sort({ createdAt: -1 }); // Ordena por el campo 'createdAt' de manera descendente
@@ -16,8 +9,21 @@ const noteCtrl = {
         } catch (err) {
           return res.status(500).json({msg: err.message});
         }
-      },
-      
+      },*/
+      getNotes: async (req, res) => {
+        try {
+            let sortCriteria = {};
+            if (req.query.sort === '-createdAt') {
+                sortCriteria = { createdAt: -1 };
+            } else if (req.query.sort === '-likes') {
+                sortCriteria = { likes: -1 };
+            }
+            const notes = await Notes.find().sort(sortCriteria);
+            res.json(notes);
+        } catch (err) {
+            return res.status(500).json({ msg: err.message });
+        }
+    },
       
     createNote: async(req, res) =>{
         try {

@@ -7,21 +7,39 @@ export default function Home() {
     const [notes, setNotes] = useState([])
     const [token, setToken] = useState('')
     const [comments, setComments] = useState([]);
+    const [sortOrder, setSortOrder] = useState('newest');
 
-    const getNotes = async (token) =>{
+    /*const getNotes = async (token) =>{
         const res = await axios.get('https://mern-stacksd-backend.onrender.com/api/notes', {
             headers:{Authorization: token}
         })
         setNotes(res.data)
-    }
+    }*/
+    const getNotes = async (token, sort) => {
+      let query = '?sort=';
+      if (sort === 'newest') {
+          query += '-createdAt';
+      } else if (sort === 'mostLiked') {
+          query += '-likes';
+      }
+      const res = await axios.get(`https://mern-stacksd-backend.onrender.com/api/notes${query}`, {
+          headers:{Authorization: token}
+      });
+      setNotes(res.data);
+  };
 
     useEffect(() =>{
         const token = localStorage.getItem('tokenStore')
         setToken(token)
-        if(token){
-            getNotes(token)
-        }
-    }, [])
+        if (token) {
+          getNotes(token, sortOrder);
+      }
+  }, [sortOrder]);
+
+   // Función para manejar el cambio de ordenamiento
+   const handleSortChange = (newSortOrder) => {
+    setSortOrder(newSortOrder);
+};
 /*
     const deleteNote = async (id) =>{
         try {
@@ -127,6 +145,10 @@ const deleteNote = async (id) => {
     return (
        
     <div className="note-wrapper">
+      <select onChange={(e) => handleSortChange(e.target.value)} value={sortOrder}>
+                <option value="newest">Más nuevo primero</option>
+                <option value="mostLiked">Más likes primero</option>
+            </select>
   {notes.map(note => (
     <div className="card" key={note._id}>
       {note.name}
