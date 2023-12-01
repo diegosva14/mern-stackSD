@@ -116,6 +116,17 @@ a{
   letter-spacing: 2px;
   font-size: 12px;
 }
+.comments-section {
+  max-height: 200px; /* Ajusta esto al tamaño que prefieras */
+  overflow-y: auto; /* Habilita el desplazamiento vertical si el contenido excede la altura máxima */
+  padding: 0.5em; /* Opcional: Añade algo de espacio dentro del contenedor de comentarios */
+}
+
+.comment {
+  padding: 0.5em; /* Espaciado entre comentarios */
+  border-bottom: 1px solid #ccc; /* Opcional: Añade una línea divisoria entre comentarios */
+  /* Asegúrate de que el último comentario no tenga un borde inferior, puedes usar :last-child en CSS */
+}
 
 
 /* ******* Create Note******************* */
