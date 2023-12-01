@@ -121,11 +121,12 @@ a{
   overflow-y: auto; /* Habilita el desplazamiento vertical si el contenido excede la altura máxima */
   padding: 0.5em; /* Opcional: Añade algo de espacio dentro del contenedor de comentarios */
   color: wheat;
-  background: #083444
+  background: #083444;
 }
 
 .comment {
   padding: 0.5em; /* Espaciado entre comentarios */
+  background: #083444;
   border-bottom: 1px solid #ccc; /* Opcional: Añade una línea divisoria entre comentarios */
   /* Asegúrate de que el último comentario no tenga un borde inferior, puedes usar :last-child en CSS */
 }
