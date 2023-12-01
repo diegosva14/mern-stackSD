@@ -14,7 +14,7 @@ function Profile() {
         try {
           const response = await axios.get('https://mern-stacksd-backend.onrender.com/api/users/profile', {
             headers: {
-              // Asegúrate de incluir el token de autorización si es necesario
+                'Authorization': `Bearer ${token}`
             }
           });
           if (response.data) {
@@ -22,7 +22,7 @@ function Profile() {
             setCurrentBiography(response.data.bio);
           }
         } catch (error) {
-          console.error("Error al cargar el perfil del usuario", error);
+            console.error("Error al cargar el perfil del usuario", error.response ? error.response.data : error);
         }
       };
   
